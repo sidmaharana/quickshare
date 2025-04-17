@@ -3,40 +3,89 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>About Us</title>
+    <title>About Us | SeamlessShare</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="styles.css" />
     <style>
-      .sect {
-        width: 90%;
-        max-width: 800px; /* Limit max width for better readability */
+      body {
+        background: #000;
+        color: #00ffcc;
+        font-family: 'Courier New', Courier, monospace;
+      }
+
+      nav {
+        background-color: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(6px);
+        border: 1px solid rgba(0, 255, 204, 0.2);
+        border-radius: 12px;
+        box-shadow: 0 0 10px #00ffcc;
+        padding: 1rem 2rem;
+        margin-bottom: 80px;
+      }
+
+      nav ul {
         display: flex;
-        flex: 1;
+        justify-content: space-between;
+        align-items: center;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        gap: 2rem;
+      }
+
+      nav a {
+        color: #00d4ff;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      nav a:hover {
+        color: #0ff;
+        text-shadow: 0 0 5px #00ffcc;
+      }
+
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #111;
+        padding: 10px;
+        border-radius: 8px;
+        box-shadow: 0 0 12px rgba(0, 255, 204, 0.3);
+        top: 100%;
+        left: 0;
+      }
+
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
+
+      .sect {
+        max-width: 900px;
+        width: 90%;
+        margin: auto;
+        margin-top: 100px;
+        margin-bottom: 100px;
+        display: flex;
         flex-direction: column;
-        justify-content: center;
-        gap: 40px; /* Space between sections */
-        margin-top: 140px; /* Push content below navbar */
-        margin-bottom: 140px;
+        gap: 40px;
       }
 
-      section,
-      .block1 {
-        background-color: #222; /* Slightly lighter background for contrast */
-        padding: 18px;
+      section {
+        background: rgba(0, 0, 0, 0.5);
+        border: 1px solid rgba(0, 255, 204, 0.15);
+        backdrop-filter: blur(6px);
         border-radius: 10px;
-        box-shadow: 0 0 8px rgb(52, 160, 210); /* Applying shadow */
-        text-align: center;
-        transition: transform 0.3s ease-in-out;
+        padding: 30px;
+        box-shadow: 0 0 12px #00ffcc;
+        transition: transform 0.3s ease;
       }
 
-      section:hover,
-      .block1:hover {
+      section:hover {
         transform: scale(1.02);
       }
 
       .about-us h2 {
         font-size: 28px;
-        text-shadow: 0 0 8px rgb(52, 160, 210);
+        text-shadow: 0 0 8px #00ffcc;
         margin-bottom: 10px;
       }
 
@@ -49,11 +98,11 @@
       }
 
       .team-member {
-        background-color: #1e1e1e;
+        background-color: #111;
         padding: 20px;
         border-radius: 8px;
-        width: 300px;
-        box-shadow: 0 0 8px rgba(52, 160, 210, 0.7);
+        width: 280px;
+        box-shadow: 0 0 8px rgba(0, 255, 204, 0.6);
         transition: transform 0.3s ease-in-out;
       }
 
@@ -63,87 +112,82 @@
 
       .team-member h4 {
         font-size: 20px;
-        color: #00d4ff;
+        color: #00ffcc;
       }
 
       .team-member p {
         font-size: 16px;
-        color: #ccc;
+        color: #cceeff;
+      }
+
+      footer {
+        text-align: center;
+        padding: 20px;
+        color: #00d4ff;
+        font-size: 14px;
+        border-top: 1px solid rgba(0, 255, 204, 0.1);
+        margin-top: 60px;
+        box-shadow: 0 -2px 6px rgba(0, 255, 204, 0.1);
       }
     </style>
   </head>
-  <body
-    class="bg-zinc-950 text-white flex flex-col items-center justify-center min-h-screen p-6"
-  >
-    <div class="nav-container mb-10">
-      <nav class="nav3 bg-zinc-900">
-        <ul>
-          <li
-            class="li text-2xl not-italic"
-            style="
-              font-family: Georgia, 'Times New Roman', Times, serif;
-              font-weight: 1000;
-            "
-          >
-            SeamlessShare
-          </li>
-          <li><a href="index.html">Home</a></li>
-          <li class="dropdown">
-            <a href="#">Resources</a>
-            <div
-              class="dropdown-content text-center w-48 shadow-lg rounded-full group-hover:block absolute left-1/2 transform -translate-x-1/2 z-50"
-            >
-              <a href="Blog.html">Blog</a>
-              <a href="About_us.html">About Us</a>
-            </div>
-          </li>
-          <li><a href="Help.html">Help</a></li>
-        </ul>
-      </nav>
-    </div>
+  <body class="flex flex-col items-center justify-start min-h-screen px-4">
+    <nav class="w-full max-w-6xl mt-6">
+      <ul>
+        <li class="text-2xl font-bold uppercase text-cyan-400 tracking-wide">
+          SeamlessShare
+        </li>
+        <li><a href="index.html">Home</a></li>
+        <li class="dropdown relative">
+          <a href="#">Resources</a>
+          <div class="dropdown-content absolute mt-2">
+            <a href="Blog.html">Blog</a><br />
+            <a href="About_us.html">About Us</a>
+          </div>
+        </li>
+        <li><a href="Help.html">Help</a></li>
+      </ul>
+    </nav>
 
     <div class="sect">
-      <!-- About Us Section -->
-      <section id="about-us" class="about-us">
+      <section id="about-us" class="about-us text-center">
         <h2>About Us</h2>
         <p style="color: #8abbeb; font-size: 15px">
           We are a passionate team of developers from <b>PICT College</b>,
-          pursuing Electronics and Computer Engineering. Our goal is to create
-          seamless and efficient file transfer solutions that prioritize
-          security and ease of use.
+          pursuing Electronics and Computer Engineering. Our mission is to build
+          seamless file-sharing tools that blend top-tier encryption with
+          smooth, user-friendly design.
         </p>
 
-        <h3 style="font-weight: 550; margin-top: 10px">Meet the Team</h3>
-        <div class="team-container">
+        <h3 class="mt-4 font-semibold text-lg">Meet the Team</h3>
+        <div class="team-container mt-4">
           <div class="team-member">
             <h4>🚀 Parv Seth</h4>
             <p>
-              Handled deployment ensuring that our platform runs efficiently and
-              is accessible to all users.
+              Led deployment—ensuring our platform runs fast, secure, and
+              globally accessible.
             </p>
           </div>
           <div class="team-member">
             <h4>👨‍💻 Sidharth Maharana</h4>
             <p>
-              Responsible for backend development, ensuring smooth data
-              processing and secure file handling.
+              Backend master—built encrypted channels, storage logic, and robust
+              APIs for file flow.
             </p>
           </div>
-
           <div class="team-member">
             <h4>👩‍💻 Saee Tarde</h4>
             <p>
-              Led the front-end development and JavaScript integration, creating
-              an intuitive and user-friendly interface.
+              Frontend lead—crafted the interface and made it come alive with
+              JavaScript wizardry.
             </p>
           </div>
         </div>
       </section>
     </div>
+
     <footer>
-      <p style="color: #00d4ff; height: 15px">
-        © 2025 File Transfer System. All rights reserved.
-      </p>
+      © 2025 SeamlessShare. All rights reserved.
     </footer>
   </body>
 </html>
