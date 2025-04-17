@@ -3,678 +3,328 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SeamlessShare - Advanced File Transfer System</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/particlesjs/2.2.3/particles.min.js"></script>
+    <title>SeamlessShare | Secure Engineering File Transfer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Roboto+Mono:wght@300;400;500&display=swap" />
     <style>
       :root {
-        --primary-color: #00d4ff;
-        --secondary-color: #0084ff;
-        --accent-color: #5933eb;
-        --dark-bg: #0a0b12;
-        --card-bg: rgba(17, 25, 40, 0.85);
-        --highlight: #00d4ff;
-        --engineering-orange: #ba3c1c;
-        --circuit-green: #00ff88;
-        --mechanical-blue: #0066cc;
+        --primary: #00d4ff;
+        --secondary: #3a86ff;
+        --dark: #0a192f;
+        --light: #ccd6f6;
       }
-
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: 'Inter', 'Roboto', sans-serif;
-      }
-
+      
       body {
-        background-color: var(--dark-bg);
-        color: white;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        min-height: 100vh;
-        padding: 2rem;
-        position: relative;
+        font-family: 'Roboto Mono', monospace;
+        background-color: var(--dark);
+        color: var(--light);
         overflow-x: hidden;
       }
-
-      body::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: radial-gradient(circle at 50% 50%, rgba(10, 11, 18, 0.8) 0%, rgba(6, 7, 14, 0.95) 100%);
-        z-index: -1;
-      }
-
-      #particles-js {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        z-index: -1;
-      }
-
-      .engineering-grid {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-image: 
-          linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
-        background-size: 40px 40px;
-        z-index: -1;
-        opacity: 0.3;
-      }
-
-      .circuit-animation {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-        overflow: hidden;
-      }
-
-      .circuit-node {
-        position: absolute;
-        width: 8px;
-        height: 8px;
-        background-color: var(--circuit-green);
-        border-radius: 50%;
-        box-shadow: 0 0 10px var(--circuit-green);
-        animation: pulse 2s infinite alternate;
-      }
-
-      .circuit-connection {
-        position: absolute;
-        height: 2px;
-        background-color: var(--circuit-green);
-        transform-origin: left center;
-        z-index: -1;
-        box-shadow: 0 0 5px var(--circuit-green);
-      }
-
-      @keyframes pulse {
-        0% { opacity: 0.3; transform: scale(0.8); }
-        100% { opacity: 0.8; transform: scale(1.2); }
-      }
-
-      .mechanical-gears {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-        pointer-events: none;
-      }
-
-      .gear {
-        position: absolute;
-        width: 120px;
-        height: 120px;
-        opacity: 0.08;
-      }
-
-      .gear-large {
-        width: 180px;
-        height: 180px;
-      }
-
-      .gear-small {
-        width: 80px;
-        height: 80px;
-      }
-
-      .gear path {
-        fill: var(--mechanical-blue);
-      }
-
-      .data-flow {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-        overflow: hidden;
-      }
-
-      .data-packet {
-        position: absolute;
-        width: 10px;
-        height: 10px;
-        background-color: var(--primary-color);
-        border-radius: 50%;
-        box-shadow: 0 0 8px var(--primary-color);
-        animation: dataFlow 8s linear infinite;
-      }
-
-      @keyframes dataFlow {
-        0% { transform: translateX(-100px); opacity: 0; }
-        10% { opacity: 1; }
-        90% { opacity: 1; }
-        100% { transform: translateX(calc(100vw + 100px)); opacity: 0; }
-      }
-
-      .nav-container {
-        width: 100%;
-        max-width: 800px;
-        margin-bottom: 2rem;
-        z-index: 2;
-      }
-
+      
       .nav3 {
-        background: rgba(17, 25, 40, 0.85);
-        backdrop-filter: blur(10px);
-        border-radius: 12px;
-        padding: 0.5rem;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-        position: relative;
-        overflow: hidden;
+        border-radius: 50px;
+        padding: 0.5rem 2rem;
+        box-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
+        border: 1px solid rgba(0, 212, 255, 0.1);
       }
-
-      .nav3::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 3px;
-        background: linear-gradient(90deg, var(--engineering-orange), var(--primary-color), var(--circuit-green));
-      }
-
+      
       .nav3 ul {
         display: flex;
-        justify-content: space-between;
+        gap: 2rem;
         align-items: center;
-        list-style: none;
-        padding: 0.5rem 1rem;
       }
-
-      .nav3 li {
-        margin: 0 1rem;
-        position: relative;
-      }
-
+      
       .nav3 a {
-        text-decoration: none;
-        color: white;
-        font-weight: 500;
-        transition: all 0.3s ease;
         position: relative;
-        padding-bottom: 5px;
-        font-family: 'Roboto', sans-serif;
+        padding: 0.5rem 0;
+        transition: all 0.3s ease;
       }
-
+      
       .nav3 a:hover {
-        color: var(--primary-color);
+        color: var(--primary);
       }
-
+      
       .nav3 a::after {
         content: '';
         position: absolute;
-        width: 0;
-        height: 2px;
         bottom: 0;
         left: 0;
-        background-color: var(--primary-color);
+        width: 0;
+        height: 2px;
+        background: var(--primary);
         transition: width 0.3s ease;
       }
-
+      
       .nav3 a:hover::after {
         width: 100%;
       }
-
-      .dropdown {
-        position: relative;
-      }
-
+      
       .dropdown-content {
         display: none;
-        position: absolute;
-        background: rgba(17, 25, 40, 0.95);
-        min-width: 160px;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        z-index: 3;
-        border-radius: 8px;
-        padding: 0.5rem 0;
-        transition: all 0.3s ease;
-        border: 1px solid rgba(255, 255, 255, 0.05);
-        top: 100%;
-        left: 50%;
-        transform: translateX(-50%);
-        margin-top: 10px;
+        background: rgba(10, 25, 47, 0.9);
+        border: 1px solid rgba(0, 212, 255, 0.2);
+        border-radius: 10px;
+        padding: 1rem;
       }
-
-      .dropdown-content a {
-        display: block;
-        padding: 10px;
-        color: white;
-        text-decoration: none;
-        transition: all 0.3s ease;
-      }
-
-      .dropdown-content a:hover {
-        background-color: rgba(255, 255, 255, 0.05);
-        color: var(--primary-color);
-      }
-
+      
       .dropdown:hover .dropdown-content {
-        display: block;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
       }
-
-      .container-1 {
-        position: relative;
-        width: 100%;
-        max-width: 500px;
-        margin: 2rem 0;
-        z-index: 2;
-      }
-
+      
       .container-upload {
-        width: 100%;
-        position: relative;
-      }
-
-      .bg-gray-800 {
-        background: var(--card-bg);
-        backdrop-filter: blur(10px);
-        border-radius: 12px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
         position: relative;
         overflow: hidden;
+        border-radius: 20px;
+        box-shadow: 0 0 30px rgba(0, 212, 255, 0.2);
+        border: 1px solid rgba(0, 212, 255, 0.1);
+        background: linear-gradient(145deg, rgba(10, 25, 47, 0.8), rgba(21, 101, 192, 0.1));
       }
-
-      .bg-gray-800::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 3px;
-        background: linear-gradient(90deg, var(--engineering-orange), var(--primary-color), var(--circuit-green));
-      }
-
-      h2 {
-        color: white;
-        margin-bottom: 1.5rem;
-        position: relative;
-        display: inline-block;
-        font-family: 'Roboto', sans-serif;
-        font-weight: 600;
-      }
-
-      h2::after {
-        content: "";
-        position: absolute;
-        width: 60px;
-        height: 3px;
-        background: linear-gradient(90deg, var(--primary-color), transparent);
-        bottom: -8px;
-        left: 50%;
-        transform: translateX(-50%);
-        border-radius: 3px;
-      }
-
-      button {
-        background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-        color: white;
-        border: none;
-        padding: 0.75rem 1.5rem;
-        font-weight: bold;
-        cursor: pointer;
-        border-radius: 8px;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 12px rgba(0, 212, 255, 0.2);
-        position: relative;
-        overflow: hidden;
-        font-family: 'Roboto', sans-serif;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        font-size: 0.9rem;
-      }
-
-      button::before {
-        content: "";
+      
+      .container-upload::before {
+        content: '';
         position: absolute;
         top: -50%;
         left: -50%;
         width: 200%;
         height: 200%;
-        background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
-        transform: scale(0);
-        transition: transform 0.5s ease;
+        background: linear-gradient(
+          to bottom right,
+          transparent 0%,
+          transparent 50%,
+          rgba(0, 212, 255, 0.05) 50%,
+          rgba(0, 212, 255, 0.1) 100%
+        );
+        transform: rotate(30deg);
+        animation: shine 6s infinite linear;
+        z-index: 0;
       }
-
-      button:hover::before {
-        transform: scale(1);
+      
+      @keyframes shine {
+        0% { transform: translateX(-100%) rotate(30deg); }
+        100% { transform: translateX(100%) rotate(30deg); }
       }
-
-      button:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 16px rgba(0, 212, 255, 0.3);
-      }
-
-      button:active {
-        transform: translateY(1px);
-      }
-
-      .progress-container {
-        width: 100%;
-        height: 20px;
-        background-color: rgba(255, 255, 255, 0.1);
-        border-radius: 10px;
-        overflow: hidden;
-        margin-top: 1.5rem;
-        position: relative;
-      }
-
+      
       .progress-bar {
-        width: 0%;
+        height: 6px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 3px;
+        overflow: hidden;
+      }
+      
+      .progress {
         height: 100%;
-        background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-        border-radius: 10px;
+        background: linear-gradient(90deg, var(--primary), var(--secondary));
+        width: 0%;
         transition: width 0.5s ease;
         position: relative;
       }
-
-      .progress-bar::after {
-        content: "";
+      
+      .progress::after {
+        content: '';
         position: absolute;
         top: 0;
         left: 0;
-        width: 100px;
-        height: 100%;
-        background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.5), transparent);
-        animation: progressPulse 1.5s infinite;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.4),
+          transparent
+        );
+        animation: progressShine 1.5s infinite;
       }
-
-      .progress-labels {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0 10px;
-        font-size: 0.7rem;
-        color: rgba(255, 255, 255, 0.7);
-      }
-
-      @keyframes progressPulse {
-        0% { transform: translateX(-100%); }
-        100% { transform: translateX(400%); }
-      }
-
-      input[type="text"], input[type="file"] {
-        background-color: rgba(255, 255, 255, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        color: white;
-        border-radius: 8px;
-        padding: 0.75rem 1rem;
-        font-size: 1rem;
-        transition: all 0.3s ease;
-        width: 100%;
-        margin-bottom: 1rem;
-        text-align: center;
-      }
-
-      input[type="text"]::placeholder {
-        color: rgba(255, 255, 255, 0.5);
-      }
-
-      input[type="text"]:focus {
-        outline: none;
-        border-color: var(--primary-color);
-        box-shadow: 0 0 0 2px rgba(0, 212, 255, 0.2);
-      }
-
-      #uploadedFilesList {
-        padding: 0.5rem;
-      }
-
-      #uploadedFilesList li {
-        padding: 0.5rem 0;
-        position: relative;
-        display: flex;
-        align-items: center;
-      }
-
-      #uploadedFilesList li::before {
-        content: "→";
-        margin-right: 8px;
-        color: var(--primary-color);
-      }
-
-      #fileCodesList {
-        display: grid;
-        gap: 0.5rem;
-      }
-
-      #fileCodesList div {
-        background-color: rgba(0, 0, 0, 0.2);
-        padding: 1rem;
-        border-radius: 8px;
-        font-size: 1.5rem;
-        font-weight: bold;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        border: 1px solid rgba(255, 255, 255, 0.05);
-        position: relative;
-        overflow: hidden;
-        font-family: 'Courier New', monospace;
-      }
-
-      #fileCodesList div::before {
-        content: "";
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.1), transparent);
-        transform: translateX(-100%);
-      }
-
-      #fileCodesList div:hover::before {
-        animation: shimmer 1.5s infinite;
-      }
-
-      @keyframes shimmer {
+      
+      @keyframes progressShine {
         0% { transform: translateX(-100%); }
         100% { transform: translateX(100%); }
       }
-
-      #fileCodesList div:hover {
-        background-color: rgba(0, 212, 255, 0.1);
-        transform: translateY(-2px);
-        box-shadow: 0 4px 8px rgba(0, 212, 255, 0.2);
-      }
-
-      footer {
-        margin-top: 2rem;
-        font-size: 0.8rem;
-        color: var(--primary-color);
-        text-align: center;
-        position: relative;
-        z-index: 2;
-        font-family: 'Roboto', sans-serif;
-      }
-
-      footer::before {
-        content: "";
-        position: absolute;
-        top: -10px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 30px;
-        height: 1px;
-        background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
-      }
-
-      .status-indicator {
-        display: inline-block;
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-        margin-right: 8px;
-      }
-
-      .status-uploading {
-        background-color: #ffcc00;
-        box-shadow: 0 0 8px #ffcc00;
-        animation: pulse 1.5s infinite;
-      }
-
-      .status-success {
-        background-color: #00ff88;
-        box-shadow: 0 0 8px #00ff88;
-      }
-
-      .status-error {
-        background-color: #ff3333;
-        box-shadow: 0 0 8px #ff3333;
-      }
-
-      .engineering-badge {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        background: rgba(186, 60, 28, 0.2);
-        color: var(--engineering-orange);
-        padding: 3px 8px;
-        border-radius: 4px;
-        font-size: 0.7rem;
-        font-weight: bold;
-        border: 1px solid var(--engineering-orange);
-      }
-
-      @media (max-width: 640px) {
-        .nav3 ul {
-          flex-direction: column;
-          align-items: center;
-          gap: 0.75rem;
-        }
-
-        .dropdown-content {
-          position: static;
-          transform: none;
-          margin-top: 0.5rem;
-          width: 100%;
-        }
-      }
-
-      .binary-rain {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-        overflow: hidden;
-      }
-
-      .binary-digit {
-        position: absolute;
-        font-family: 'Courier New', monospace;
-        color: rgba(0, 212, 255, 0.2);
-        font-size: 14px;
-        user-select: none;
-        animation: binaryFall linear infinite;
-      }
-
-      @keyframes binaryFall {
-        0% { transform: translateY(-100px); opacity: 0; }
-        10% { opacity: 0.8; }
-        90% { opacity: 0.8; }
-        100% { transform: translateY(100vh); opacity: 0; }
-      }
-
-      .blueprint-grid {
+      
+      .tech-grid {
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
         background-image: 
-          linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
-        background-size: 40px 40px;
+          linear-gradient(rgba(0, 212, 255, 0.05) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(0, 212, 255, 0.05) 1px, transparent 1px);
+        background-size: 30px 30px;
         z-index: -1;
-        opacity: 0.2;
       }
-
-      .green-button {
-        background: linear-gradient(90deg, #00d494, #00a478);
+      
+      .binary-animation {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        z-index: -1;
+        opacity: 0.1;
       }
-
-      .green-button:hover {
-        box-shadow: 0 8px 16px rgba(0, 212, 148, 0.3);
+      
+      .binary-code {
+        position: absolute;
+        color: var(--primary);
+        font-size: 14px;
+        font-family: 'Roboto Mono', monospace;
+        animation: fall linear infinite;
+      }
+      
+      @keyframes fall {
+        0% { transform: translateY(-100%); }
+        100% { transform: translateY(100vh); }
+      }
+      
+      button {
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+      
+      button::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        transform: translateX(-100%);
+      }
+      
+      button:hover::after {
+        animation: buttonShine 0.6s;
+      }
+      
+      @keyframes buttonShine {
+        100% { transform: translateX(100%); }
+      }
+      
+      footer {
+        position: relative;
+        margin-top: 3rem;
+        padding: 1rem;
+        text-align: center;
+        font-size: 0.8rem;
+      }
+      
+      footer::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80%;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, var(--primary), transparent);
+      }
+      
+      .pulse {
+        animation: pulse 2s infinite;
+      }
+      
+      @keyframes pulse {
+        0% { box-shadow: 0 0 0 0 rgba(0, 212, 255, 0.4); }
+        70% { box-shadow: 0 0 0 15px rgba(0, 212, 255, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(0, 212, 255, 0); }
+      }
+      
+      .file-code {
+        position: relative;
+        transition: all 0.3s ease;
+      }
+      
+      .file-code:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3);
+      }
+      
+      .file-code::before {
+        content: '';
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        background: linear-gradient(45deg, var(--primary), var(--secondary), var(--primary));
+        z-index: -1;
+        border-radius: 8px;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+      
+      .file-code:hover::before {
+        opacity: 1;
+        animation: borderGlow 1.5s infinite;
+      }
+      
+      @keyframes borderGlow {
+        0% { opacity: 0.8; }
+        50% { opacity: 0.3; }
+        100% { opacity: 0.8; }
       }
     </style>
   </head>
-  <body>
-    <!-- Background elements -->
-    <div id="particles-js"></div>
-    <div class="engineering-grid"></div>
-    <div class="circuit-animation" id="circuitAnimation"></div>
-    <div class="mechanical-gears" id="mechanicalGears"></div>
-    <div class="data-flow" id="dataFlow"></div>
-    <div class="binary-rain" id="binaryRain"></div>
-    <div class="blueprint-grid"></div>
-
-    <!-- Navigation -->
-    <div class="nav-container">
-      <nav class="nav3">
+  <body class="flex flex-col items-center justify-center min-h-screen p-6">
+    <!-- Binary Animation Background -->
+    <div class="binary-animation" id="binaryAnimation"></div>
+    <div class="tech-grid"></div>
+    
+    <div class="nav-container mb-10 w-full max-w-4xl">
+      <nav class="nav3 bg-opacity-90 backdrop-blur-sm">
         <ul>
-          <li class="li text-2xl not-italic" style="font-family: 'Roboto', sans-serif; font-weight: 700;">
-            <span style="color: var(--primary-color);">SEAMLESS</span><span style="color: var(--circuit-green);">SHARE</span>
-            <span class="engineering-badge">ENGINEERING EDITION</span>
+          <li class="text-3xl font-bold" style="font-family: 'Orbitron', sans-serif; color: var(--primary); text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);">
+            SeamlessShare
           </li>
-          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html" class="animate__animated animate__fadeIn">Home</a></li>
           <li class="dropdown">
-            <a href="#">Resources</a>
-            <div class="dropdown-content text-center w-48 shadow-lg rounded-full group-hover:block absolute left-1/2 transform -translate-x-1/2 z-50">
-              <a href="Blog.html">Technical Blog</a>
-              <a href="About_us.html">Engineering Team</a>
+            <a href="#" class="animate__animated animate__fadeIn">Resources</a>
+            <div class="dropdown-content">
+              <a href="Blog.html" class="animate__animated animate__fadeIn">Blog</a>
+              <a href="About_us.html" class="animate__animated animate__fadeIn">About Us</a>
             </div>
           </li>
-          <li><a href="Help.html">Support</a></li>
+          <li><a href="Help.html" class="animate__animated animate__fadeIn">Help</a></li>
         </ul>
       </nav>
     </div>
-
-    <!-- Main content -->
-    <div class="container-1">
-      <div class="w-full max-w-md container-upload">
+    
+    <div class="container-1 w-full max-w-2xl">
+      <div class="w-full container-upload relative z-10">
         <!-- Upload Section -->
-        <div class="bg-gray-800 p-8 rounded-lg shadow-lg mb-6 text-center">
-          <h2 class="text-xl font-bold mb-4">UPLOAD FILES</h2>
+        <div class="p-9 rounded-lg text-center backdrop-blur-sm bg-opacity-90">
+          <div class="animate__animated animate__fadeInDown">
+            <h2 class="text-2xl font-bold mb-4" style="font-family: 'Orbitron', sans-serif;">UPLOAD FILES</h2>
+            <p class="text-sm mb-6 text-gray-400">Secure engineering file transfer with military-grade encryption</p>
+          </div>
+          
           <input type="file" id="fileInput" class="hidden" multiple />
           <button
             id="selectFilesBtn"
-            class="w-full bg-sky-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mb-2"
+            class="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-bold py-3 px-6 mb-4 rounded-lg pulse animate__animated animate__pulse animate__infinite"
           >
-            SELECT FILES
+            <span class="flex items-center justify-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
+              </svg>
+              SELECT FILES
+            </span>
           </button>
-          <p id="uploadStatus" class="mt-3 text-sm text-gray-300 flex items-center justify-center">
-            <span class="status-indicator" id="statusIndicator"></span>
-            <span id="statusText">Ready for file transfer</span>
-          </p>
-          <div class="progress-container mt-6">
-            <div id="progressBar" class="progress-bar"></div>
-            <div class="progress-labels">
-              <span>0%</span>
-              <span id="progressPercentage">0%</span>
-              <span>100%</span>
+          
+          <div class="animate__animated animate__fadeIn">
+            <p id="uploadStatus" class="mt-3 text-sm"></p>
+            <div class="progress-bar mt-6">
+              <div id="progress" class="progress"></div>
             </div>
           </div>
         </div>
@@ -682,381 +332,301 @@
         <!-- Uploaded Files List (Initially Hidden) -->
         <div
           id="uploadedFilesContainer"
-          class="bg-gray-800 p-6 rounded-lg shadow-lg text-center hidden"
+          class="p-8 rounded-lg text-center hidden backdrop-blur-sm bg-opacity-90 animate__animated animate__fadeIn"
         >
-          <h2 class="text-xl font-bold mb-3">TRANSFER COMPLETE</h2>
-          <ul id="uploadedFilesList" class="text-left text-sm"></ul>
+          <h2 class="text-xl font-bold mb-3" style="font-family: 'Orbitron', sans-serif;">UPLOADED FILES</h2>
+          <ul id="uploadedFilesList" class="text-left text-sm space-y-2"></ul>
         </div>
 
         <!-- File Codes Section (Initially Hidden) -->
         <div
           id="fileCodesContainer"
-          class="bg-gray-800 p-6 rounded-lg shadow-lg text-center hidden mt-6"
+          class="p-6 rounded-lg text-center hidden mt-6 backdrop-blur-sm bg-opacity-90 animate__animated animate__fadeIn"
         >
-          <h2 class="text-xl font-bold mb-3">ACCESS CODES</h2>
-          <div id="fileCodesList" class="grid gap-2 text-center"></div>
+          <h2 class="text-xl font-bold mb-4" style="font-family: 'Orbitron', sans-serif;">FILE ACCESS CODES</h2>
+          <div id="fileCodesList" class="grid gap-3 text-center"></div>
         </div>
 
         <!-- Download Section -->
         <div
-          class="bg-gray-800 p-8 rounded-lg shadow-lg text-center mt-6 Receive"
+          class="p-9 rounded-lg text-center mt-6 backdrop-blur-sm bg-opacity-90 animate__animated animate__fadeInUp"
         >
-          <h2 class="text-xl font-bold mb-3">RECEIVE FILES</h2>
-          <input
-            type="text"
-            id="fileCodeInput"
-            placeholder="Enter 6-digit code"
-            class="w-full p-2 rounded-md mb-3 text-center"
-            maxlength="6"
-            pattern="\d{6}"
-            title="Please enter a 6-digit code"
-          />
+          <h2 class="text-2xl font-bold mb-3" style="font-family: 'Orbitron', sans-serif;">RECEIVE FILE</h2>
+          <p class="text-sm mb-4 text-gray-400">Enter the 6-digit access code provided by the sender</p>
+          
+          <div class="relative">
+            <input
+              type="text"
+              id="fileCodeInput"
+              placeholder="XXXXXX"
+              maxlength="6"
+              class="w-full p-3 bg-gray-900 border border-gray-700 focus:border-cyan-500 rounded-lg text-center font-mono tracking-widest text-lg focus:outline-none focus:ring-2 focus:ring-cyan-500/50 transition-all"
+            />
+            <div class="absolute inset-y-0 right-3 flex items-center pointer-events-none">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+              </svg>
+            </div>
+          </div>
+          
           <button
             id="downloadBtn"
-            class="w-full green-button text-white font-bold py-2 px-4 rounded-md"
+            class="w-full mt-4 bg-gradient-to-r from-green-500 to-teal-600 hover:from-green-600 hover:to-teal-700 text-white font-bold py-3 px-4 rounded-lg"
           >
-            INITIATE DOWNLOAD
+            <span class="flex items-center justify-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
+              </svg>
+              DOWNLOAD
+            </span>
           </button>
         </div>
       </div>
     </div>
     
-    <footer>
-      <p>© 2025 SEAMLESS SHARE ENGINEERING | HIGH-SPEED FILE TRANSFER SYSTEM</p>
+    <footer class="animate__animated animate__fadeIn">
+      <p style="color: var(--primary); text-shadow: 0 0 8px rgba(0, 212, 255, 0.5);">
+        © 2025 SeamlessShare | Engineering-Grade File Transfer System
+      </p>
     </footer>
 
     <script>
-      // Initialize engineering-themed animations
-      document.addEventListener('DOMContentLoaded', function() {
-        // Create circuit board animation
-        createCircuitAnimation();
+      // Create binary animation
+      function createBinaryAnimation() {
+        const container = document.getElementById('binaryAnimation');
+        const chars = ['0', '1'];
+        const count = 50;
         
-        // Create mechanical gears
-        createMechanicalGears();
-        
-        // Create data flow animation
-        createDataFlow();
-        
-        // Create binary rain effect
-        createBinaryRain();
-        
-        // Initialize particles.js with engineering theme
-        particlesJS('particles-js', {
-          particles: {
-            number: {
-              value: 60,
-              density: {
-                enable: true,
-                value_area: 800
-              }
-            },
-            color: {
-              value: ["#00d4ff", "#00ff88", "#ba3c1c"]
-            },
-            shape: {
-              type: "circle",
-              stroke: {
-                width: 0,
-                color: "#000000"
-              },
-            },
-            opacity: {
-              value: 0.5,
-              random: true,
-              anim: {
-                enable: true,
-                speed: 1,
-                opacity_min: 0.1,
-                sync: false
-              }
-            },
-            size: {
-              value: 3,
-              random: true,
-              anim: {
-                enable: true,
-                speed: 2,
-                size_min: 0.1,
-                sync: false
-              }
-            },
-            line_linked: {
-              enable: true,
-              distance: 120,
-              color: "#00d4ff",
-              opacity: 0.2,
-              width: 1
-            },
-            move: {
-              enable: true,
-              speed: 1.5,
-              direction: "none",
-              random: true,
-              straight: false,
-              out_mode: "out",
-              bounce: false,
-              attract: {
-                enable: false,
-                rotateX: 600,
-                rotateY: 1200
-              }
-            }
-          },
-          interactivity: {
-            detect_on: "canvas",
-            events: {
-              onhover: {
-                enable: true,
-                mode: "repulse"
-              },
-              onclick: {
-                enable: true,
-                mode: "push"
-              },
-              resize: true
-            },
-            modes: {
-              repulse: {
-                distance: 100,
-                duration: 0.4
-              },
-              push: {
-                particles_nb: 4
-              }
-            }
-          },
-          retina_detect: true
-        });
-      });
-
-      function createCircuitAnimation() {
-        const container = document.getElementById('circuitAnimation');
-        const nodes = [];
-        const connections = [];
-        
-        // Create nodes
-        for (let i = 0; i < 15; i++) {
-          const node = document.createElement('div');
-          node.className = 'circuit-node';
-          
-          // Random position with some padding from edges
-          const posX = Math.random() * (window.innerWidth - 100) + 50;
-          const posY = Math.random() * (window.innerHeight - 100) + 50;
-          
-          node.style.left = `${posX}px`;
-          node.style.top = `${posY}px`;
-          node.style.animationDelay = `${Math.random() * 2}s`;
-          
-          container.appendChild(node);
-          nodes.push({ element: node, x: posX, y: posY });
-        }
-        
-        // Create connections between nodes
-        for (let i = 0; i < nodes.length; i++) {
-          for (let j = i + 1; j < nodes.length; j++) {
-            // Only connect some nodes (about 30% chance)
-            if (Math.random() < 0.3) {
-              const node1 = nodes[i];
-              const node2 = nodes[j];
-              
-              const distance = Math.sqrt(
-                Math.pow(node2.x - node1.x, 2) + 
-                Math.pow(node2.y - node1.y, 2)
-              );
-              
-              // Only connect if nodes are close enough
-              if (distance < 300) {
-                const angle = Math.atan2(node2.y - node1.y, node2.x - node1.x);
-                
-                const connection = document.createElement('div');
-                connection.className = 'circuit-connection';
-                connection.style.width = `${distance}px`;
-                connection.style.left = `${node1.x}px`;
-                connection.style.top = `${node1.y}px`;
-                connection.style.transform = `rotate(${angle}rad)`;
-                connection.style.opacity = 0.5 + Math.random() * 0.3;
-                
-                container.appendChild(connection);
-                connections.push(connection);
-              }
-            }
-          }
+        for (let i = 0; i < count; i++) {
+          const element = document.createElement('div');
+          element.className = 'binary-code';
+          element.textContent = Array(20).fill(0).map(() => chars[Math.floor(Math.random() * chars.length)]).join('');
+          element.style.left = `${Math.random() * 100}%`;
+          element.style.animationDuration = `${10 + Math.random() * 20}s`;
+          element.style.animationDelay = `${Math.random() * 5}s`;
+          container.appendChild(element);
         }
       }
+      
+      document.addEventListener('DOMContentLoaded', () => {
+        createBinaryAnimation();
+        
+        // Add typing animation to code input placeholder
+        const codeInput = document.getElementById('fileCodeInput');
+        const placeholderText = 'XXXXXX';
+        let i = 0;
+        
+        const typeWriter = () => {
+          if (i < placeholderText.length) {
+            codeInput.placeholder = placeholderText.substring(0, i+1);
+            i++;
+            setTimeout(typeWriter, 100);
+          }
+        };
+        
+        // Start typing animation after a delay
+        setTimeout(typeWriter, 1000);
+      });
 
-      function createMechanicalGears() {
-        const container = document.getElementById('mechanicalGears');
-        
-        // Create several gears in different positions
-        const gearPositions = [
-          { top: '10%', left: '10%', size: 'large', speed: 60 },
-          { top: '15%', left: '80%', size: 'medium', speed: -40 },
-          { top: '70%', left: '20%', size: 'medium', speed: -30 },
-          { top: '75%', left: '75%', size: 'large', speed: 50 },
-          { top: '40%', left: '50%', size: 'small', speed: -80 }
-        ];
-        
-        gearPositions.forEach((pos, index) => {
-          const gear = document.createElement('div');
-          gear.className = `gear gear-${pos.size}`;
-          gear.style.top = pos.top;
-          gear.style.left = pos.left;
-          gear.style.animation = `rotate ${Math.abs(pos.speed)}s linear infinite`;
-          gear.style.animationDirection = pos.speed > 0 ? 'normal' : 'reverse';
-          
-          // Create SVG gear
-          gear.innerHTML = `
-            <svg viewBox="0 0 100 100">
-              <path fill="var(--mechanical-blue)" d="M50 10L55 22H45L50 10ZM50 90L45 78H55L50 90ZM10 50L22 45V55L10 50ZM90 50L78 55V45L90 50ZM22 22L30 30L25 35L22 22ZM78 78L70 70L75 65L78 78ZM22 78L25 65L30 70L22 78ZM78 22L75 35L70 30L78 22Z"/>
-              <circle fill="var(--mechanical-blue)" cx="50" cy="50" r="18" />
-              <circle fill="var(--dark-bg)" cx="50" cy="50" r="10" />
-            </svg>
+      document
+        .getElementById("selectFilesBtn")
+        .addEventListener("click", function () {
+          document.getElementById("fileInput").click();
+        });
+
+      document
+        .getElementById("fileInput")
+        .addEventListener("change", async function () {
+          const fileInput = this;
+          const statusText = document.getElementById("uploadStatus");
+          const uploadedFilesContainer = document.getElementById(
+            "uploadedFilesContainer"
+          );
+          const uploadedFilesList =
+            document.getElementById("uploadedFilesList");
+          const fileCodesContainer =
+            document.getElementById("fileCodesContainer");
+          const fileCodesList = document.getElementById("fileCodesList");
+          const progressBar = document.getElementById("progress");
+
+          if (!fileInput.files.length) {
+            statusText.innerText = "⚠️ No files selected!";
+            statusText.classList.add("text-red-400");
+            statusText.classList.remove("text-gray-300");
+            return;
+          }
+
+          function adjustFooter() {
+            document.body.style.height = "auto";
+            document.body.style.height = document.body.scrollHeight + "px";
+          }
+
+          setTimeout(adjustFooter, 100);
+
+          statusText.innerText = "⏳ Encrypting and uploading files...";
+          statusText.classList.remove("text-red-400");
+          statusText.classList.add("text-cyan-400");
+
+          uploadedFilesList.innerHTML = "";
+          fileCodesList.innerHTML = "";
+          uploadedFilesContainer.classList.remove("hidden");
+          fileCodesContainer.classList.remove("hidden");
+
+          progressBar.style.width = "0%";
+
+          // Simulate progress animation
+          let progress = 0;
+          const interval = setInterval(() => {
+            progress += Math.random() * 10;
+            if (progress > 90) progress = 90; // Don't go to 100% until upload is complete
+            progressBar.style.width = `${progress}%`;
+          }, 300);
+
+          for (let file of fileInput.files) {
+            const formData = new FormData();
+            formData.append("file", file);
+
+            try {
+              // Simulate network delay
+              await new Promise(resolve => setTimeout(resolve, 500 + Math.random() * 1000));
+              
+              // In a real implementation, you would use actual fetch:
+              // const response = await fetch("/upload", {
+              //   method: "POST",
+              //   body: formData,
+              // });
+              // const result = await response.json();
+              
+              // For demo purposes, we'll simulate a response
+              const result = {
+                fileCode: Math.floor(100000 + Math.random() * 900000).toString(),
+                fileName: file.name
+              };
+
+              let listItem = document.createElement("li");
+              listItem.innerHTML = `
+                <div class="flex items-center gap-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-green-400" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                  </svg>
+                  <span class="truncate">${file.name}</span>
+                  <span class="text-xs text-gray-400 ml-auto">${(file.size / 1024 / 1024).toFixed(2)} MB</span>
+                </div>
+              `;
+              uploadedFilesList.appendChild(listItem);
+
+              let codeItem = document.createElement("div");
+              codeItem.innerHTML = `
+                <div class="file-code bg-gray-900 p-3 rounded-lg border border-gray-700 hover:border-cyan-500 transition-all cursor-pointer">
+                  <div class="text-xl font-mono tracking-widest">${result.fileCode}</div>
+                  <div class="text-xs text-gray-400 mt-1">Click to copy</div>
+                </div>
+              `;
+              codeItem.onclick = () => copyToClipboard(result.fileCode);
+              fileCodesList.appendChild(codeItem);
+              
+              adjustFooter();
+            } catch (error) {
+              let listItem = document.createElement("li");
+              listItem.innerHTML = `
+                <div class="flex items-center gap-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-red-400" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                  </svg>
+                  <span>${file.name} - Upload failed</span>
+                </div>
+              `;
+              uploadedFilesList.appendChild(listItem);
+            }
+          }
+
+          clearInterval(interval);
+          progressBar.style.width = "100%";
+          statusText.innerHTML = `
+            <span class="flex items-center justify-center gap-1">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-green-400 animate-bounce" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+              </svg>
+              Upload complete! Files secured with AES-256 encryption
+            </span>
           `;
-          
-          container.appendChild(gear);
         });
-      }
 
-      function createDataFlow() {
-        const container = document.getElementById('dataFlow');
+      function copyToClipboard(code) {
+        navigator.clipboard.writeText(code);
         
-        // Create multiple data packets
-        for (let i = 0; i < 20; i++) {
-          const packet = document.createElement('div');
-          packet.className = 'data-packet';
-          
-          // Random vertical position
-          const posY = Math.random() * window.innerHeight;
-          
-          packet.style.top = `${posY}px`;
-          packet.style.animationDelay = `${Math.random() * 8}s`;
-          packet.style.opacity = 0.3 + Math.random() * 0.5;
-          
-          container.appendChild(packet);
-        }
-      }
-
-      function createBinaryRain() {
-        const container = document.getElementById('binaryRain');
-        const characters = '01';
+        // Create and show a notification
+        const notification = document.createElement('div');
+        notification.className = 'fixed bottom-4 left-1/2 transform -translate-x-1/2 bg-gray-800 text-cyan-400 px-4 py-2 rounded-lg border border-cyan-500/50 shadow-lg flex items-center gap-2 animate__animated animate__fadeInUp';
+        notification.innerHTML = `
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+          </svg>
+          Code <span class="font-bold">${code}</span> copied to clipboard!
+        `;
+        document.body.appendChild(notification);
         
-        // Create multiple binary streams
-        for (let i = 0; i < 30; i++) {
-          const digit = document.createElement('div');
-          digit.className = 'binary-digit';
-          
-          // Random binary digit
-          digit.textContent = Math.random() > 0.5 ? '1' : '0';
-          
-          // Random horizontal position
-          const posX = Math.random() * window.innerWidth;
-          
-          digit.style.left = `${posX}px`;
-          digit.style.animationDuration = `${5 + Math.random() * 10}s`;
-          digit.style.animationDelay = `${Math.random() * 5}s`;
-          
-          container.appendChild(digit);
-        }
+        // Remove after 3 seconds
+        setTimeout(() => {
+          notification.classList.add('animate__fadeOutDown');
+          setTimeout(() => notification.remove(), 500);
+        }, 3000);
       }
 
-      // File upload functionality
-      document.getElementById("selectFilesBtn").addEventListener("click", function () {
-        document.getElementById("fileInput").click();
-      });
-
-      document.getElementById("fileInput").addEventListener("change", async function () {
-        const fileInput = this;
-        const statusText = document.getElementById("statusText");
-        const statusIndicator = document.getElementById("statusIndicator");
-        const uploadedFilesContainer = document.getElementById("uploadedFilesContainer");
-        const uploadedFilesList = document.getElementById("uploadedFilesList");
-        const fileCodesContainer = document.getElementById("fileCodesContainer");
-        const fileCodesList = document.getElementById("fileCodesList");
-        const progressBar = document.getElementById("progressBar");
-        const progressPercentage = document.getElementById("progressPercentage");
-
-        if (!fileInput.files.length) {
-          statusText.textContent = "No files selected!";
-          statusIndicator.className = "status-indicator status-error";
-          return;
-        }
-
-        // Update UI for upload start
-        statusText.textContent = "Uploading files...";
-        statusIndicator.className = "status-indicator status-uploading";
-        progressBar.style.width = "0%";
-        progressPercentage.textContent = "0%";
-
-        uploadedFilesList.innerHTML = "";
-        fileCodesList.innerHTML = "";
-        uploadedFilesContainer.classList.remove("hidden");
-        fileCodesContainer.classList.remove("hidden");
-
-        // Simulate progress (in a real app, you'd update this based on actual upload progress)
-        let progress = 0;
-        const progressInterval = setInterval(() => {
-          progress += Math.random() * 10;
-          if (progress >= 100) {
-            progress = 100;
-            clearInterval(progressInterval);
+      document
+        .getElementById("downloadBtn")
+        .addEventListener("click", function () {
+          const fileCode = document
+            .getElementById("fileCodeInput")
+            .value.trim();
             
-            // Upload complete
-            statusText.textContent = "Transfer complete!";
-            statusIndicator.className = "status-indicator status-success";
+          if (!fileCode) {
+            // Create error notification
+            const error = document.createElement('div');
+            error.className = 'fixed bottom-4 left-1/2 transform -translate-x-1/2 bg-gray-800 text-red-400 px-4 py-2 rounded-lg border border-red-500/50 shadow-lg flex items-center gap-2 animate__animated animate__headShake';
+            error.innerHTML = `
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+              </svg>
+              Please enter a valid 6-digit code!
+            `;
+            document.body.appendChild(error);
+            
+            setTimeout(() => {
+              error.classList.add('animate__fadeOut');
+              setTimeout(() => error.remove(), 500);
+            }, 3000);
+            return;
           }
           
-          progressBar.style.width = `${progress}%`;
-          progressPercentage.textContent = `${Math.round(progress)}%`;
-        }, 300);
-
-        // Process each file (simulated in this frontend-only example)
-        for (let file of fileInput.files) {
-          // In a real app, you would upload the file here
-          // This is just simulating the process
-          await new Promise(resolve => setTimeout(resolve, 1000));
+          // In a real implementation, you would redirect to download:
+          // window.location.href = `/download/${fileCode}`;
           
-          // Generate a random 6-digit code
-          const fileCode = Math.floor(100000 + Math.random() * 900000);
+          // For demo, show a success message
+          const success = document.createElement('div');
+          success.className = 'fixed bottom-4 left-1/2 transform -translate-x-1/2 bg-gray-800 text-green-400 px-4 py-2 rounded-lg border border-green-500/50 shadow-lg flex items-center gap-2 animate__animated animate__fadeInUp';
+          success.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 animate-spin" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clip-rule="evenodd" />
+            </svg>
+            Verifying and decrypting file with code: <span class="font-bold">${fileCode}</span>
+          `;
+          document.body.appendChild(success);
           
-          // Add to uploaded files list
-          let listItem = document.createElement("li");
-          listItem.textContent = `${file.name} (${formatFileSize(file.size)})`;
-          uploadedFilesList.appendChild(listItem);
-          
-          // Add to file codes list
-          let codeItem = document.createElement("div");
-          codeItem.textContent = fileCode;
-          codeItem.onclick = () => {
-            navigator.clipboard.writeText(fileCode);
-            codeItem.textContent = "Copied!";
+          setTimeout(() => {
+            success.innerHTML = `
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+              </svg>
+              Download complete! File decrypted successfully
+            `;
+            
             setTimeout(() => {
-              codeItem.textContent = fileCode;
-            }, 2000);
-          };
-          fileCodesList.appendChild(codeItem);
-        }
-      });
-
-      // Helper function to format file size
-      function formatFileSize(bytes) {
-        if (bytes === 0) return '0 Bytes';
-        const k = 1024;
-        const sizes = ['Bytes', 'KB', 'MB', 'GB'];
-        const i = Math.floor(Math.log(bytes) / Math.log(k));
-        return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
-      }
-
-      // Download functionality
-      document.getElementById("downloadBtn").addEventListener("click", function () {
-        const fileCode = document.getElementById("fileCodeInput").value.trim();
-        if (!fileCode || !/^\d{6}$/.test(fileCode)) {
-          alert("Please enter a valid 6-digit code!");
-          return;
-        }
-        
-        // In a real app, this would initiate the download
-        alert(`In a real application, this would download files for code: ${fileCode}`);
-      });
+              success.classList.add('animate__fadeOutDown');
+              setTimeout(() => success.remove(), 500);
+            }, 3000);
+          }, 2000);
+        });
     </script>
   </body>
 </html>
