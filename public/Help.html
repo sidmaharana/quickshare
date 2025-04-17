@@ -14,58 +14,70 @@
         justify-content: center;
         align-items: center;
         margin-top: 200px;
+        margin-bottom: 200px;
       }
 
       .block1 {
-        background-color: #222; /* Slightly lighter background for contrast */
+        background-color: #222;
         margin-bottom: 60px;
         padding: 25px;
         border-radius: 10px;
-        box-shadow: 0 0 8px rgb(52, 160, 210); /* Applying shadow */
+        box-shadow: 0 0 8px rgb(52, 160, 210);
         text-align: center;
         transition: transform 0.3s ease-in-out;
-        width: 120%;
+        width: 100%;
       }
 
       .block1:hover {
         transform: scale(1.02);
       }
+
       .block1 h1 {
         font-size: 25px;
-        color: #20c9eb;
+        color: #00d4ff;
         margin-bottom: 10px;
-        font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+        font-family: "Courier New", Courier, monospace;
+        text-shadow: 0 0 10px #36a2cc;
       }
 
       .block1 p {
         font-size: 18px;
         color: #fff;
-        font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+        font-family: "Courier New", Courier, monospace;
         margin-bottom: 10px;
       }
+
+      .block1 p:hover {
+        color: #36a2cc;
+      }
+
+      .Container h2 {
+        font-size: 30px;
+        text-shadow: 0 0 8px rgb(52, 160, 210);
+        margin-bottom: 40px;
+        margin-top: -90px;
+        text-decoration: underline 1px solid #00d4ff;
+      }
+
+      footer p {
+        color: #00d4ff;
+        text-align: center;
+        margin-top: 50px;
+      }
+
     </style>
   </head>
-  <body
-    class="bg-zinc-950 text-white flex flex-col items-center justify-center min-h-screen p-6"
-  >
+  <body class="bg-zinc-950 text-white flex flex-col items-center justify-center min-h-screen p-6">
     <div class="nav-container mb-10">
       <nav class="nav3 bg-zinc-900">
         <ul>
-          <li
-            class="li text-2xl not-italic"
-            style="
-              font-family: Georgia, 'Times New Roman', Times, serif;
-              font-weight: 1000;
-            "
-          >
+          <li class="li text-2xl not-italic" style="font-family: Georgia, 'Times New Roman', Times, serif; font-weight: 1000;">
             SeamlessShare
           </li>
           <li><a href="index.html">Home</a></li>
           <li class="dropdown">
             <a href="#">Resources</a>
-            <div
-              class="dropdown-content text-center w-48 shadow-lg rounded-full group-hover:block absolute left-1/2 transform -translate-x-1/2 z-50"
-            >
+            <div class="dropdown-content text-center w-48 shadow-lg rounded-full group-hover:block absolute left-1/2 transform -translate-x-1/2 z-50">
               <a href="Blog.html">Blog</a>
               <a href="About_us.html">About Us</a>
             </div>
@@ -76,17 +88,7 @@
     </div>
 
     <div class="Container">
-      <h2
-        style="
-          font-size: 30px;
-          text-shadow: 0 0 8px rgb(52, 160, 210);
-          margin-bottom: 40px;
-          margin-top: -90px;
-          text-decoration: underline 1px;
-        "
-      >
-        How to Use
-      </h2>
+      <h2>How to Use</h2>
 
       <div class="block1">
         <h1>How to Send Files</h1>
@@ -103,10 +105,7 @@
 
       <div class="block1">
         <h1>Supported File Types & Size</h1>
-        <p>
-          All file types are supported (documents, images, videos, compressed
-          files, etc.).
-        </p>
+        <p>All file types are supported (documents, images, videos, compressed files, etc.).</p>
         <p>Maximum file size: Up to 500MB (subject to change).</p>
       </div>
 
@@ -129,13 +128,12 @@
 
       <div class="block1">
         <h1>Contact Support</h1>
-        <p>📧 Email: Uplords@filetransfer.com</p>
+        <p>📧 Email: <a href="mailto:uplords@filetransfer.com" style="color: #36a2cc;">Uplords@filetransfer.com</a></p>
       </div>
     </div>
+
     <footer>
-      <p style="color: #00d4ff">
-        © 2025 File Transfer System. All rights reserved.
-      </p>
+      <p>© 2025 File Transfer System. All rights reserved.</p>
     </footer>
   </body>
 </html>
