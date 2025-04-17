@@ -3,34 +3,31 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SeamlessShare - Secure File Transfer System</title>
+    <title>SeamlessShare - Advanced File Transfer System</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/particlesjs/2.2.3/particles.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;700&family=Rubik:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
       :root {
-        --primary-color: #00a8ff;
-        --secondary-color: #0097e6;
-        --accent-color: #353b48;
-        --dark-bg: #0a192f;
-        --card-bg: rgba(21, 101, 192, 0.1);
+        --primary-color: #00d4ff;
+        --secondary-color: #0084ff;
+        --accent-color: #5933eb;
+        --dark-bg: #0a0b12;
+        --card-bg: rgba(17, 25, 40, 0.85);
         --highlight: #00d4ff;
-        --text-primary: #e6f1ff;
-        --text-secondary: #8892b0;
-        --success: #2ecc71;
-        --warning: #f39c12;
-        --error: #e74c3c;
+        --engineering-orange: #ba3c1c;
+        --circuit-green: #00ff88;
+        --mechanical-blue: #0066cc;
       }
 
       * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-        font-family: 'Rubik', sans-serif;
+        font-family: 'Inter', 'Roboto', sans-serif;
       }
 
       body {
         background-color: var(--dark-bg);
-        color: var(--text-primary);
+        color: white;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -39,7 +36,6 @@
         padding: 2rem;
         position: relative;
         overflow-x: hidden;
-        line-height: 1.6;
       }
 
       body::before {
@@ -49,9 +45,7 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: 
-          radial-gradient(circle at 20% 30%, rgba(10, 25, 47, 0.8) 0%, transparent 50%),
-          radial-gradient(circle at 80% 70%, rgba(21, 101, 192, 0.3) 0%, transparent 50%);
+        background: radial-gradient(circle at 50% 50%, rgba(10, 11, 18, 0.8) 0%, rgba(6, 7, 14, 0.95) 100%);
         z-index: -1;
       }
 
@@ -64,66 +58,106 @@
         z-index: -1;
       }
 
-      .circuit-lines {
+      .engineering-grid {
         position: absolute;
         top: 0;
         left: 0;
-        right: 0;
-        bottom: 0;
+        width: 100%;
+        height: 100%;
+        background-image: 
+          linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+        background-size: 40px 40px;
+        z-index: -1;
+        opacity: 0.3;
+      }
+
+      .circuit-animation {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
         z-index: -1;
         overflow: hidden;
-        opacity: 0.1;
       }
 
-      .circuit-line {
+      .circuit-node {
         position: absolute;
-        background-color: var(--highlight);
-        border-radius: 50px;
+        width: 8px;
+        height: 8px;
+        background-color: var(--circuit-green);
+        border-radius: 50%;
+        box-shadow: 0 0 10px var(--circuit-green);
+        animation: pulse 2s infinite alternate;
       }
 
-      .horizontal {
-        height: 1px;
-        width: 20%;
-        animation: moveHorizontalLine 15s infinite linear;
-      }
-
-      .vertical {
-        width: 1px;
-        height: 20%;
-        animation: moveVerticalLine 15s infinite linear;
-      }
-
-      @keyframes moveHorizontalLine {
-        0% { transform: translateX(-100%); }
-        100% { transform: translateX(500%); }
-      }
-
-      @keyframes moveVerticalLine {
-        0% { transform: translateY(-100%); }
-        100% { transform: translateY(500%); }
-      }
-
-      .digital-bytes {
+      .circuit-connection {
         position: absolute;
-        font-family: 'Roboto Mono', monospace;
-        font-size: 12px;
-        color: rgba(0, 168, 255, 0.2);
-        pointer-events: none;
-        user-select: none;
-        animation: fadeBytes 5s infinite alternate;
+        height: 2px;
+        background-color: var(--circuit-green);
+        transform-origin: left center;
+        z-index: -1;
+        box-shadow: 0 0 5px var(--circuit-green);
       }
 
-      @keyframes fadeBytes {
-        0% { opacity: 0.1; }
-        100% { opacity: 0.3; }
+      @keyframes pulse {
+        0% { opacity: 0.3; transform: scale(0.8); }
+        100% { opacity: 0.8; transform: scale(1.2); }
       }
 
-      .container-1 {
-        position: relative;
+      .mechanical-gears {
+        position: absolute;
         width: 100%;
-        max-width: 600px;
-        margin: 2rem 0;
-        z-index: 2;
+        height: 100%;
+        z-index: -1;
+        pointer-events: none;
+      }
+
+      .gear {
+        position: absolute;
+        width: 120px;
+        height: 120px;
+        opacity: 0.08;
+      }
+
+      .gear-large {
+        width: 180px;
+        height: 180px;
+      }
+
+      .gear-small {
+        width: 80px;
+        height: 80px;
+      }
+
+      .gear path {
+        fill: var(--mechanical-blue);
+      }
+
+      .data-flow {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        overflow: hidden;
+      }
+
+      .data-packet {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background-color: var(--primary-color);
+        border-radius: 50%;
+        box-shadow: 0 0 8px var(--primary-color);
+        animation: dataFlow 8s linear infinite;
+      }
+
+      @keyframes dataFlow {
+        0% { transform: translateX(-100px); opacity: 0; }
+        10% { opacity: 1; }
+        90% { opacity: 1; }
+        100% { transform: translateX(calc(100vw + 100px)); opacity: 0; }
       }
 
       .nav-container {
@@ -134,12 +168,24 @@
       }
 
       .nav3 {
-        background: rgba(10, 25, 47, 0.8);
+        background: rgba(17, 25, 40, 0.85);
         backdrop-filter: blur(10px);
-        border-radius: 8px;
+        border-radius: 12px;
         padding: 0.5rem;
-        border: 1px solid rgba(0, 168, 255, 0.1);
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .nav3::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: linear-gradient(90deg, var(--engineering-orange), var(--primary-color), var(--circuit-green));
       }
 
       .nav3 ul {
@@ -147,7 +193,7 @@
         justify-content: space-between;
         align-items: center;
         list-style: none;
-        padding: 0.5rem 1.5rem;
+        padding: 0.5rem 1rem;
       }
 
       .nav3 li {
@@ -157,17 +203,16 @@
 
       .nav3 a {
         text-decoration: none;
-        color: var(--text-primary);
+        color: white;
         font-weight: 500;
-        font-size: 0.95rem;
         transition: all 0.3s ease;
         position: relative;
         padding-bottom: 5px;
-        font-family: 'Roboto Mono', monospace;
+        font-family: 'Roboto', sans-serif;
       }
 
       .nav3 a:hover {
-        color: var(--highlight);
+        color: var(--primary-color);
       }
 
       .nav3 a::after {
@@ -177,7 +222,7 @@
         height: 2px;
         bottom: 0;
         left: 0;
-        background-color: var(--highlight);
+        background-color: var(--primary-color);
         transition: width 0.3s ease;
       }
 
@@ -192,14 +237,14 @@
       .dropdown-content {
         display: none;
         position: absolute;
-        background: rgba(10, 25, 47, 0.95);
+        background: rgba(17, 25, 40, 0.95);
         min-width: 160px;
         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         z-index: 3;
-        border-radius: 6px;
+        border-radius: 8px;
         padding: 0.5rem 0;
         transition: all 0.3s ease;
-        border: 1px solid rgba(0, 168, 255, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.05);
         top: 100%;
         left: 50%;
         transform: translateX(-50%);
@@ -209,18 +254,26 @@
       .dropdown-content a {
         display: block;
         padding: 10px;
-        color: var(--text-primary);
+        color: white;
         text-decoration: none;
         transition: all 0.3s ease;
-        font-size: 0.9rem;
       }
 
       .dropdown-content a:hover {
-        background-color: rgba(0, 168, 255, 0.1);
+        background-color: rgba(255, 255, 255, 0.05);
+        color: var(--primary-color);
       }
 
       .dropdown:hover .dropdown-content {
         display: block;
+      }
+
+      .container-1 {
+        position: relative;
+        width: 100%;
+        max-width: 500px;
+        margin: 2rem 0;
+        z-index: 2;
       }
 
       .container-upload {
@@ -229,10 +282,10 @@
       }
 
       .bg-gray-800 {
-        background: rgba(10, 25, 47, 0.6);
+        background: var(--card-bg);
         backdrop-filter: blur(10px);
-        border-radius: 8px;
-        border: 1px solid rgba(0, 168, 255, 0.1);
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
         box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
         position: relative;
         overflow: hidden;
@@ -241,34 +294,27 @@
       .bg-gray-800::before {
         content: "";
         position: absolute;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        height: 200%;
-        background: repeating-linear-gradient(
-          transparent,
-          transparent 50px,
-          rgba(0, 168, 255, 0.03) 50px,
-          rgba(0, 168, 255, 0.03) 51px
-        );
-        transform: rotate(45deg);
-        z-index: -1;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: linear-gradient(90deg, var(--engineering-orange), var(--primary-color), var(--circuit-green));
       }
 
       h2 {
-        color: var(--text-primary);
+        color: white;
         margin-bottom: 1.5rem;
         position: relative;
         display: inline-block;
+        font-family: 'Roboto', sans-serif;
         font-weight: 600;
-        font-size: 1.5rem;
       }
 
       h2::after {
         content: "";
         position: absolute;
         width: 60px;
-        height: 2px;
+        height: 3px;
         background: linear-gradient(90deg, var(--primary-color), transparent);
         bottom: -8px;
         left: 50%;
@@ -277,21 +323,21 @@
       }
 
       button {
-        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
         color: white;
         border: none;
-        padding: 0.8rem 1.8rem;
-        font-weight: 500;
+        padding: 0.75rem 1.5rem;
+        font-weight: bold;
         cursor: pointer;
-        border-radius: 6px;
+        border-radius: 8px;
         transition: all 0.3s ease;
-        box-shadow: 0 4px 15px rgba(0, 168, 255, 0.3);
+        box-shadow: 0 4px 12px rgba(0, 212, 255, 0.2);
         position: relative;
         overflow: hidden;
-        font-family: 'Roboto Mono', monospace;
-        letter-spacing: 0.5px;
+        font-family: 'Roboto', sans-serif;
         text-transform: uppercase;
-        font-size: 0.85rem;
+        letter-spacing: 0.5px;
+        font-size: 0.9rem;
       }
 
       button::before {
@@ -312,32 +358,33 @@
 
       button:hover {
         transform: translateY(-2px);
-        box-shadow: 0 8px 20px rgba(0, 168, 255, 0.4);
+        box-shadow: 0 8px 16px rgba(0, 212, 255, 0.3);
       }
 
       button:active {
         transform: translateY(1px);
       }
 
-      .progress-bar {
+      .progress-container {
         width: 100%;
-        height: 6px;
+        height: 20px;
         background-color: rgba(255, 255, 255, 0.1);
-        border-radius: 3px;
+        border-radius: 10px;
         overflow: hidden;
         margin-top: 1.5rem;
+        position: relative;
       }
 
-      .progress {
+      .progress-bar {
         width: 0%;
         height: 100%;
         background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-        border-radius: 3px;
+        border-radius: 10px;
         transition: width 0.5s ease;
         position: relative;
       }
 
-      .progress::after {
+      .progress-bar::after {
         content: "";
         position: absolute;
         top: 0;
@@ -348,73 +395,82 @@
         animation: progressPulse 1.5s infinite;
       }
 
+      .progress-labels {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 10px;
+        font-size: 0.7rem;
+        color: rgba(255, 255, 255, 0.7);
+      }
+
       @keyframes progressPulse {
         0% { transform: translateX(-100%); }
         100% { transform: translateX(400%); }
       }
 
-      input[type="text"] {
-        background-color: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(0, 168, 255, 0.3);
+      input[type="text"], input[type="file"] {
+        background-color: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
         color: white;
-        border-radius: 6px;
-        padding: 0.8rem 1rem;
+        border-radius: 8px;
+        padding: 0.75rem 1rem;
         font-size: 1rem;
         transition: all 0.3s ease;
         width: 100%;
         margin-bottom: 1rem;
         text-align: center;
-        font-family: 'Roboto Mono', monospace;
       }
 
       input[type="text"]::placeholder {
-        color: rgba(255, 255, 255, 0.4);
+        color: rgba(255, 255, 255, 0.5);
       }
 
       input[type="text"]:focus {
         outline: none;
         border-color: var(--primary-color);
-        box-shadow: 0 0 0 2px rgba(0, 168, 255, 0.2);
+        box-shadow: 0 0 0 2px rgba(0, 212, 255, 0.2);
       }
 
       #uploadedFilesList {
         padding: 0.5rem;
-        max-height: 200px;
-        overflow-y: auto;
       }
 
       #uploadedFilesList li {
-        padding: 0.8rem 0;
+        padding: 0.5rem 0;
         position: relative;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        font-family: 'Roboto Mono', monospace;
-        font-size: 0.9rem;
         display: flex;
         align-items: center;
       }
 
-      #uploadedFilesList li:last-child {
-        border-bottom: none;
+      #uploadedFilesList li::before {
+        content: "→";
+        margin-right: 8px;
+        color: var(--primary-color);
       }
 
       #fileCodesList {
         display: grid;
-        gap: 0.8rem;
+        gap: 0.5rem;
       }
 
       #fileCodesList div {
-        background-color: rgba(0, 168, 255, 0.1);
-        padding: 1.2rem;
-        border-radius: 6px;
+        background-color: rgba(0, 0, 0, 0.2);
+        padding: 1rem;
+        border-radius: 8px;
         font-size: 1.5rem;
         font-weight: bold;
         cursor: pointer;
         transition: all 0.3s ease;
-        border: 1px solid rgba(0, 168, 255, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.05);
         position: relative;
         overflow: hidden;
-        font-family: 'Roboto Mono', monospace;
-        letter-spacing: 2px;
+        font-family: 'Courier New', monospace;
       }
 
       #fileCodesList div::before {
@@ -424,7 +480,7 @@
         top: 0;
         width: 100%;
         height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(0, 168, 255, 0.2), transparent);
+        background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.1), transparent);
         transform: translateX(-100%);
       }
 
@@ -438,19 +494,19 @@
       }
 
       #fileCodesList div:hover {
-        background-color: rgba(0, 168, 255, 0.2);
+        background-color: rgba(0, 212, 255, 0.1);
         transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(0, 168, 255, 0.2);
+        box-shadow: 0 4px 8px rgba(0, 212, 255, 0.2);
       }
 
       footer {
-        margin-top: 3rem;
+        margin-top: 2rem;
         font-size: 0.8rem;
-        color: var(--text-secondary);
+        color: var(--primary-color);
         text-align: center;
         position: relative;
         z-index: 2;
-        font-family: 'Roboto Mono', monospace;
+        font-family: 'Roboto', sans-serif;
       }
 
       footer::before {
@@ -459,9 +515,46 @@
         top: -10px;
         left: 50%;
         transform: translateX(-50%);
-        width: 100px;
+        width: 30px;
         height: 1px;
         background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+      }
+
+      .status-indicator {
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        margin-right: 8px;
+      }
+
+      .status-uploading {
+        background-color: #ffcc00;
+        box-shadow: 0 0 8px #ffcc00;
+        animation: pulse 1.5s infinite;
+      }
+
+      .status-success {
+        background-color: #00ff88;
+        box-shadow: 0 0 8px #00ff88;
+      }
+
+      .status-error {
+        background-color: #ff3333;
+        box-shadow: 0 0 8px #ff3333;
+      }
+
+      .engineering-badge {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: rgba(186, 60, 28, 0.2);
+        color: var(--engineering-orange);
+        padding: 3px 8px;
+        border-radius: 4px;
+        font-size: 0.7rem;
+        font-weight: bold;
+        border: 1px solid var(--engineering-orange);
       }
 
       @media (max-width: 640px) {
@@ -479,165 +572,82 @@
         }
       }
 
-      .tech-decoration {
+      .binary-rain {
         position: absolute;
-        opacity: 0.1;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
         z-index: -1;
+        overflow: hidden;
       }
 
-      .rotating-gear {
-        width: 150px;
-        height: 150px;
+      .binary-digit {
         position: absolute;
-        z-index: -1;
-        opacity: 0.05;
-        animation: rotate 60s linear infinite;
+        font-family: 'Courier New', monospace;
+        color: rgba(0, 212, 255, 0.2);
+        font-size: 14px;
+        user-select: none;
+        animation: binaryFall linear infinite;
       }
 
-      @keyframes rotate {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
+      @keyframes binaryFall {
+        0% { transform: translateY(-100px); opacity: 0; }
+        10% { opacity: 0.8; }
+        90% { opacity: 0.8; }
+        100% { transform: translateY(100vh); opacity: 0; }
       }
 
-      .data-stream {
+      .blueprint-grid {
         position: absolute;
-        height: 1px;
-        background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: 
+          linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+        background-size: 40px 40px;
         z-index: -1;
-        animation: streamMotion 8s linear infinite;
-      }
-
-      @keyframes streamMotion {
-        0% { transform: translateX(-100%); opacity: 0; }
-        50% { opacity: 0.3; }
-        100% { transform: translateX(200%); opacity: 0; }
+        opacity: 0.2;
       }
 
       .green-button {
-        background: linear-gradient(135deg, #27ae60, #2ecc71);
+        background: linear-gradient(90deg, #00d494, #00a478);
       }
 
-      .status-indicator {
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-        display: inline-block;
-        margin-right: 8px;
-      }
-
-      .status-success {
-        background-color: var(--success);
-        box-shadow: 0 0 8px var(--success);
-      }
-
-      .status-error {
-        background-color: var(--error);
-        box-shadow: 0 0 8px var(--error);
-      }
-
-      .status-warning {
-        background-color: var(--warning);
-        box-shadow: 0 0 8px var(--warning);
-      }
-
-      /* Scrollbar styling */
-      ::-webkit-scrollbar {
-        width: 6px;
-      }
-
-      ::-webkit-scrollbar-track {
-        background: rgba(0, 0, 0, 0.1);
-      }
-
-      ::-webkit-scrollbar-thumb {
-        background: var(--primary-color);
-        border-radius: 3px;
-      }
-
-      /* Engineering badge */
-      .engineering-badge {
-        position: absolute;
-        top: 20px;
-        right: 20px;
-        background: rgba(0, 168, 255, 0.1);
-        border: 1px solid rgba(0, 168, 255, 0.3);
-        border-radius: 4px;
-        padding: 4px 8px;
-        font-size: 0.7rem;
-        font-family: 'Roboto Mono', monospace;
-        color: var(--primary-color);
-        z-index: 10;
-      }
-
-      /* File info display */
-      .file-info {
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-        font-size: 0.8rem;
-        color: var(--text-secondary);
-      }
-
-      .file-size {
-        margin-left: 10px;
+      .green-button:hover {
+        box-shadow: 0 8px 16px rgba(0, 212, 148, 0.3);
       }
     </style>
   </head>
   <body>
-    <!-- Engineering badge -->
-    <div class="engineering-badge">ENGINEERING GRADE</div>
-
-    <!-- Background particles -->
+    <!-- Background elements -->
     <div id="particles-js"></div>
-
-    <!-- Circuit decoration -->
-    <div class="circuit-lines">
-      <div class="circuit-line horizontal" style="top: 15%; left: 0;"></div>
-      <div class="circuit-line horizontal" style="top: 45%; left: -10%;"></div>
-      <div class="circuit-line horizontal" style="top: 75%; left: -20%;"></div>
-      <div class="circuit-line vertical" style="top: 0; left: 20%;"></div>
-      <div class="circuit-line vertical" style="top: 0; left: 50%;"></div>
-      <div class="circuit-line vertical" style="top: 0; left: 80%;"></div>
-    </div>
-
-    <!-- Tech decorations -->
-    <svg class="rotating-gear" viewBox="0 0 100 100" style="top: 10%; left: 10%;">
-      <path fill="var(--primary-color)" d="M50 20L53 27H47L50 20ZM50 80L47 73H53L50 80ZM20 50L27 47V53L20 50ZM80 50L73 53V47L80 50ZM28.8 28.8L35.4 31.7L32.5 35.4L28.8 28.8ZM71.2 71.2L64.6 68.3L67.5 64.6L71.2 71.2ZM28.8 71.2L32.5 64.6L35.4 68.3L28.8 71.2ZM71.2 28.8L67.5 35.4L64.6 31.7L71.2 28.8Z"/>
-      <circle fill="var(--primary-color)" cx="50" cy="50" r="15" />
-      <circle fill="var(--dark-bg)" cx="50" cy="50" r="8" />
-    </svg>
-
-    <svg class="rotating-gear" viewBox="0 0 100 100" style="bottom: 10%; right: 10%;">
-      <path fill="var(--secondary-color)" d="M50 10L55 22H45L50 10ZM50 90L45 78H55L50 90ZM10 50L22 45V55L10 50ZM90 50L78 55V45L90 50ZM22 22L30 30L25 35L22 22ZM78 78L70 70L75 65L78 78ZM22 78L25 65L30 70L22 78ZM78 22L75 35L70 30L78 22Z"/>
-      <circle fill="var(--secondary-color)" cx="50" cy="50" r="18" />
-      <circle fill="var(--dark-bg)" cx="50" cy="50" r="10" />
-    </svg>
-
-    <!-- Data streams -->
-    <div class="data-stream" style="width: 30%; top: 25%; left: 0;"></div>
-    <div class="data-stream" style="width: 40%; top: 60%; left: 10%; animation-delay: 2s;"></div>
-    <div class="data-stream" style="width: 25%; top: 40%; right: 0; animation-delay: 1s;"></div>
-    <div class="data-stream" style="width: 35%; bottom: 30%; right: 5%; animation-delay: 3s;"></div>
-
-    <!-- Digital bytes decoration -->
-    <div id="digital-bytes-container"></div>
+    <div class="engineering-grid"></div>
+    <div class="circuit-animation" id="circuitAnimation"></div>
+    <div class="mechanical-gears" id="mechanicalGears"></div>
+    <div class="data-flow" id="dataFlow"></div>
+    <div class="binary-rain" id="binaryRain"></div>
+    <div class="blueprint-grid"></div>
 
     <!-- Navigation -->
-    <div class="nav-container mb-10">
+    <div class="nav-container">
       <nav class="nav3">
         <ul>
-          <li class="li text-2xl not-italic" style="font-family: 'Roboto Mono', monospace; font-weight: 700;">
-            SEAMLESS<span style="color: var(--primary-color);">SHARE</span>
+          <li class="li text-2xl not-italic" style="font-family: 'Roboto', sans-serif; font-weight: 700;">
+            <span style="color: var(--primary-color);">SEAMLESS</span><span style="color: var(--circuit-green);">SHARE</span>
+            <span class="engineering-badge">ENGINEERING EDITION</span>
           </li>
-          <li><a href="index.html">HOME</a></li>
+          <li><a href="index.html">Home</a></li>
           <li class="dropdown">
-            <a href="#">RESOURCES</a>
-            <div class="dropdown-content text-center w-48 shadow-lg rounded-md group-hover:block absolute left-1/2 transform -translate-x-1/2 z-50">
-              <a href="Blog.html">BLOG</a>
-              <a href="About_us.html">ABOUT US</a>
+            <a href="#">Resources</a>
+            <div class="dropdown-content text-center w-48 shadow-lg rounded-full group-hover:block absolute left-1/2 transform -translate-x-1/2 z-50">
+              <a href="Blog.html">Technical Blog</a>
+              <a href="About_us.html">Engineering Team</a>
             </div>
           </li>
-          <li><a href="Help.html">HELP</a></li>
+          <li><a href="Help.html">Support</a></li>
         </ul>
       </nav>
     </div>
@@ -648,19 +658,24 @@
         <!-- Upload Section -->
         <div class="bg-gray-800 p-8 rounded-lg shadow-lg mb-6 text-center">
           <h2 class="text-xl font-bold mb-4">UPLOAD FILES</h2>
-          <p class="text-sm text-gray-400 mb-4" style="font-family: 'Roboto Mono', monospace;">
-            Secure, encrypted file transfer with military-grade encryption
-          </p>
           <input type="file" id="fileInput" class="hidden" multiple />
           <button
             id="selectFilesBtn"
-            class="w-full text-white font-bold py-3 px-4 mb-2"
+            class="w-full bg-sky-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mb-2"
           >
             SELECT FILES
           </button>
-          <p id="uploadStatus" class="mt-3 text-sm" style="font-family: 'Roboto Mono', monospace;"></p>
-          <div class="progress-bar mt-6">
-            <div id="progress" class="progress"></div>
+          <p id="uploadStatus" class="mt-3 text-sm text-gray-300 flex items-center justify-center">
+            <span class="status-indicator" id="statusIndicator"></span>
+            <span id="statusText">Ready for file transfer</span>
+          </p>
+          <div class="progress-container mt-6">
+            <div id="progressBar" class="progress-bar"></div>
+            <div class="progress-labels">
+              <span>0%</span>
+              <span id="progressPercentage">0%</span>
+              <span>100%</span>
+            </div>
           </div>
         </div>
 
@@ -669,7 +684,7 @@
           id="uploadedFilesContainer"
           class="bg-gray-800 p-6 rounded-lg shadow-lg text-center hidden"
         >
-          <h2 class="text-xl font-bold mb-3">UPLOADED FILES</h2>
+          <h2 class="text-xl font-bold mb-3">TRANSFER COMPLETE</h2>
           <ul id="uploadedFilesList" class="text-left text-sm"></ul>
         </div>
 
@@ -679,9 +694,6 @@
           class="bg-gray-800 p-6 rounded-lg shadow-lg text-center hidden mt-6"
         >
           <h2 class="text-xl font-bold mb-3">ACCESS CODES</h2>
-          <p class="text-sm text-gray-400 mb-4" style="font-family: 'Roboto Mono', monospace;">
-            Click to copy transfer code
-          </p>
           <div id="fileCodesList" class="grid gap-2 text-center"></div>
         </div>
 
@@ -690,71 +702,45 @@
           class="bg-gray-800 p-8 rounded-lg shadow-lg text-center mt-6 Receive"
         >
           <h2 class="text-xl font-bold mb-3">RECEIVE FILES</h2>
-          <p class="text-sm text-gray-400 mb-4" style="font-family: 'Roboto Mono', monospace;">
-            Enter 6-digit transfer code below
-          </p>
           <input
             type="text"
             id="fileCodeInput"
-            placeholder="XXXXXX"
+            placeholder="Enter 6-digit code"
+            class="w-full p-2 rounded-md mb-3 text-center"
             maxlength="6"
-            class="w-full p-3 rounded-md mb-4 text-center tracking-widest"
-            style="letter-spacing: 5px;"
+            pattern="\d{6}"
+            title="Please enter a 6-digit code"
           />
           <button
             id="downloadBtn"
-            class="w-full green-button text-white font-bold py-3 px-4 rounded-md"
+            class="w-full green-button text-white font-bold py-2 px-4 rounded-md"
           >
-            DOWNLOAD
+            INITIATE DOWNLOAD
           </button>
         </div>
       </div>
     </div>
     
     <footer>
-      <p>© 2025 SEAMLESSSHARE | ENGINEERED FOR PERFORMANCE</p>
+      <p>© 2025 SEAMLESS SHARE ENGINEERING | HIGH-SPEED FILE TRANSFER SYSTEM</p>
     </footer>
 
     <script>
-      // Create digital bytes in background
-      function createDigitalBytes() {
-        const container = document.getElementById('digital-bytes-container');
-        const characters = '01';
-        
-        for (let i = 0; i < 50; i++) {
-          const byteEl = document.createElement('div');
-          byteEl.classList.add('digital-bytes');
-          
-          // Generate random binary sequence
-          let binaryText = '';
-          const length = Math.floor(Math.random() * 8) + 4;
-          for (let j = 0; j < length; j++) {
-            binaryText += characters.charAt(Math.floor(Math.random() * characters.length));
-          }
-          
-          byteEl.textContent = binaryText;
-          
-          // Random position
-          const posX = Math.random() * window.innerWidth;
-          const posY = Math.random() * window.innerHeight;
-          
-          byteEl.style.left = `${posX}px`;
-          byteEl.style.top = `${posY}px`;
-          byteEl.style.opacity = Math.random() * 0.3;
-          byteEl.style.fontSize = `${Math.random() * 6 + 10}px`;
-          
-          // Animation delay
-          byteEl.style.animationDelay = `${Math.random() * 5}s`;
-          
-          container.appendChild(byteEl);
-        }
-      }
-      
-      // Initialize particles.js
+      // Initialize engineering-themed animations
       document.addEventListener('DOMContentLoaded', function() {
-        createDigitalBytes();
+        // Create circuit board animation
+        createCircuitAnimation();
         
-        // Particles.js config
+        // Create mechanical gears
+        createMechanicalGears();
+        
+        // Create data flow animation
+        createDataFlow();
+        
+        // Create binary rain effect
+        createBinaryRain();
+        
+        // Initialize particles.js with engineering theme
         particlesJS('particles-js', {
           particles: {
             number: {
@@ -765,7 +751,7 @@
               }
             },
             color: {
-              value: "#00a8ff"
+              value: ["#00d4ff", "#00ff88", "#ba3c1c"]
             },
             shape: {
               type: "circle",
@@ -775,7 +761,7 @@
               },
             },
             opacity: {
-              value: 0.3,
+              value: 0.5,
               random: true,
               anim: {
                 enable: true,
@@ -796,14 +782,14 @@
             },
             line_linked: {
               enable: true,
-              distance: 150,
-              color: "#00a8ff",
+              distance: 120,
+              color: "#00d4ff",
               opacity: 0.2,
               width: 1
             },
             move: {
               enable: true,
-              speed: 1,
+              speed: 1.5,
               direction: "none",
               random: true,
               straight: false,
@@ -821,7 +807,7 @@
             events: {
               onhover: {
                 enable: true,
-                mode: "grab"
+                mode: "repulse"
               },
               onclick: {
                 enable: true,
@@ -830,11 +816,9 @@
               resize: true
             },
             modes: {
-              grab: {
-                distance: 140,
-                line_linked: {
-                  opacity: 0.5
-                }
+              repulse: {
+                distance: 100,
+                duration: 0.4
               },
               push: {
                 particles_nb: 4
@@ -845,6 +829,136 @@
         });
       });
 
+      function createCircuitAnimation() {
+        const container = document.getElementById('circuitAnimation');
+        const nodes = [];
+        const connections = [];
+        
+        // Create nodes
+        for (let i = 0; i < 15; i++) {
+          const node = document.createElement('div');
+          node.className = 'circuit-node';
+          
+          // Random position with some padding from edges
+          const posX = Math.random() * (window.innerWidth - 100) + 50;
+          const posY = Math.random() * (window.innerHeight - 100) + 50;
+          
+          node.style.left = `${posX}px`;
+          node.style.top = `${posY}px`;
+          node.style.animationDelay = `${Math.random() * 2}s`;
+          
+          container.appendChild(node);
+          nodes.push({ element: node, x: posX, y: posY });
+        }
+        
+        // Create connections between nodes
+        for (let i = 0; i < nodes.length; i++) {
+          for (let j = i + 1; j < nodes.length; j++) {
+            // Only connect some nodes (about 30% chance)
+            if (Math.random() < 0.3) {
+              const node1 = nodes[i];
+              const node2 = nodes[j];
+              
+              const distance = Math.sqrt(
+                Math.pow(node2.x - node1.x, 2) + 
+                Math.pow(node2.y - node1.y, 2)
+              );
+              
+              // Only connect if nodes are close enough
+              if (distance < 300) {
+                const angle = Math.atan2(node2.y - node1.y, node2.x - node1.x);
+                
+                const connection = document.createElement('div');
+                connection.className = 'circuit-connection';
+                connection.style.width = `${distance}px`;
+                connection.style.left = `${node1.x}px`;
+                connection.style.top = `${node1.y}px`;
+                connection.style.transform = `rotate(${angle}rad)`;
+                connection.style.opacity = 0.5 + Math.random() * 0.3;
+                
+                container.appendChild(connection);
+                connections.push(connection);
+              }
+            }
+          }
+        }
+      }
+
+      function createMechanicalGears() {
+        const container = document.getElementById('mechanicalGears');
+        
+        // Create several gears in different positions
+        const gearPositions = [
+          { top: '10%', left: '10%', size: 'large', speed: 60 },
+          { top: '15%', left: '80%', size: 'medium', speed: -40 },
+          { top: '70%', left: '20%', size: 'medium', speed: -30 },
+          { top: '75%', left: '75%', size: 'large', speed: 50 },
+          { top: '40%', left: '50%', size: 'small', speed: -80 }
+        ];
+        
+        gearPositions.forEach((pos, index) => {
+          const gear = document.createElement('div');
+          gear.className = `gear gear-${pos.size}`;
+          gear.style.top = pos.top;
+          gear.style.left = pos.left;
+          gear.style.animation = `rotate ${Math.abs(pos.speed)}s linear infinite`;
+          gear.style.animationDirection = pos.speed > 0 ? 'normal' : 'reverse';
+          
+          // Create SVG gear
+          gear.innerHTML = `
+            <svg viewBox="0 0 100 100">
+              <path fill="var(--mechanical-blue)" d="M50 10L55 22H45L50 10ZM50 90L45 78H55L50 90ZM10 50L22 45V55L10 50ZM90 50L78 55V45L90 50ZM22 22L30 30L25 35L22 22ZM78 78L70 70L75 65L78 78ZM22 78L25 65L30 70L22 78ZM78 22L75 35L70 30L78 22Z"/>
+              <circle fill="var(--mechanical-blue)" cx="50" cy="50" r="18" />
+              <circle fill="var(--dark-bg)" cx="50" cy="50" r="10" />
+            </svg>
+          `;
+          
+          container.appendChild(gear);
+        });
+      }
+
+      function createDataFlow() {
+        const container = document.getElementById('dataFlow');
+        
+        // Create multiple data packets
+        for (let i = 0; i < 20; i++) {
+          const packet = document.createElement('div');
+          packet.className = 'data-packet';
+          
+          // Random vertical position
+          const posY = Math.random() * window.innerHeight;
+          
+          packet.style.top = `${posY}px`;
+          packet.style.animationDelay = `${Math.random() * 8}s`;
+          packet.style.opacity = 0.3 + Math.random() * 0.5;
+          
+          container.appendChild(packet);
+        }
+      }
+
+      function createBinaryRain() {
+        const container = document.getElementById('binaryRain');
+        const characters = '01';
+        
+        // Create multiple binary streams
+        for (let i = 0; i < 30; i++) {
+          const digit = document.createElement('div');
+          digit.className = 'binary-digit';
+          
+          // Random binary digit
+          digit.textContent = Math.random() > 0.5 ? '1' : '0';
+          
+          // Random horizontal position
+          const posX = Math.random() * window.innerWidth;
+          
+          digit.style.left = `${posX}px`;
+          digit.style.animationDuration = `${5 + Math.random() * 10}s`;
+          digit.style.animationDelay = `${Math.random() * 5}s`;
+          
+          container.appendChild(digit);
+        }
+      }
+
       // File upload functionality
       document.getElementById("selectFilesBtn").addEventListener("click", function () {
         document.getElementById("fileInput").click();
@@ -852,197 +966,97 @@
 
       document.getElementById("fileInput").addEventListener("change", async function () {
         const fileInput = this;
-        const statusText = document.getElementById("uploadStatus");
+        const statusText = document.getElementById("statusText");
+        const statusIndicator = document.getElementById("statusIndicator");
         const uploadedFilesContainer = document.getElementById("uploadedFilesContainer");
         const uploadedFilesList = document.getElementById("uploadedFilesList");
         const fileCodesContainer = document.getElementById("fileCodesContainer");
         const fileCodesList = document.getElementById("fileCodesList");
-        const progressBar = document.getElementById("progress");
+        const progressBar = document.getElementById("progressBar");
+        const progressPercentage = document.getElementById("progressPercentage");
 
         if (!fileInput.files.length) {
-          statusText.innerText = "⚠️ NO FILES SELECTED";
-          statusText.style.color = "var(--error)";
+          statusText.textContent = "No files selected!";
+          statusIndicator.className = "status-indicator status-error";
           return;
         }
 
-        function adjustFooter() {
-          document.body.style.height = "auto";
-          document.body.style.height = document.body.scrollHeight + "px";
-        }
-
-        setTimeout(adjustFooter, 100);
-
-        statusText.innerText = "⏳ UPLOADING...";
-        statusText.style.color = "var(--text-secondary)";
+        // Update UI for upload start
+        statusText.textContent = "Uploading files...";
+        statusIndicator.className = "status-indicator status-uploading";
+        progressBar.style.width = "0%";
+        progressPercentage.textContent = "0%";
 
         uploadedFilesList.innerHTML = "";
         fileCodesList.innerHTML = "";
         uploadedFilesContainer.classList.remove("hidden");
         fileCodesContainer.classList.remove("hidden");
 
-        progressBar.style.width = "0%";
-
-        // Format file size
-        function formatFileSize(bytes) {
-          if (bytes === 0) return '0 Bytes';
-          const k = 1024;
-          const sizes = ['Bytes', 'KB', 'MB', 'GB'];
-          const i = Math.floor(Math.log(bytes) / Math.log(k));
-          return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
-        }
-
-        for (let file of fileInput.files) {
-          const formData = new FormData();
-          formData.append("file", file);
-
-          try {
-            const response = await fetch("/upload", {
-              method: "POST",
-              body: formData,
-            });
-
-            const result = await response.json();
-            if (response.ok) {
-              let listItem = document.createElement("li");
-              
-              // Create status indicator
-              let statusIndicator = document.createElement("span");
-              statusIndicator.className = "status-indicator status-success";
-              
-              // Create file name span
-              let fileNameSpan = document.createElement("span");
-              fileNameSpan.textContent = file.name;
-              fileNameSpan.style.color = "var(--text-primary)";
-              
-              // Create file size span
-              let fileSizeSpan = document.createElement("span");
-              fileSizeSpan.className = "file-size";
-              fileSizeSpan.textContent = formatFileSize(file.size);
-              fileSizeSpan.style.color = "var(--text-secondary)";
-              
-              // Create file info container
-              let fileInfoDiv = document.createElement("div");
-              fileInfoDiv.className = "file-info";
-              
-              // Append elements
-              listItem.appendChild(statusIndicator);
-              listItem.appendChild(fileNameSpan);
-              fileInfoDiv.appendChild(fileSizeSpan);
-              listItem.appendChild(fileInfoDiv);
-              
-              uploadedFilesList.appendChild(listItem);
-
-              let codeItem = document.createElement("div");
-              codeItem.innerText = result.fileCode;
-              codeItem.classList.add(
-                "text-2xl",
-                "font-bold",
-                "py-2",
-                "rounded-md",
-                "cursor-pointer",
-                "transition"
-              );
-              codeItem.onclick = () => copyToClipboard(result.fileCode);
-              fileCodesList.appendChild(codeItem);
-              adjustFooter();
-            } else {
-              let listItem = document.createElement("li");
-              
-              // Create status indicator
-              let statusIndicator = document.createElement("span");
-              statusIndicator.className = "status-indicator status-error";
-              
-              // Create file name span
-              let fileNameSpan = document.createElement("span");
-              fileNameSpan.textContent = `${file.name} - ${result.error}`;
-              fileNameSpan.style.color = "var(--error)";
-              
-              // Append elements
-              listItem.appendChild(statusIndicator);
-              listItem.appendChild(fileNameSpan);
-              
-              uploadedFilesList.appendChild(listItem);
-            }
-          } catch (error) {
-            let listItem = document.createElement("li");
+        // Simulate progress (in a real app, you'd update this based on actual upload progress)
+        let progress = 0;
+        const progressInterval = setInterval(() => {
+          progress += Math.random() * 10;
+          if (progress >= 100) {
+            progress = 100;
+            clearInterval(progressInterval);
             
-            // Create status indicator
-            let statusIndicator = document.createElement("span");
-            statusIndicator.className = "status-indicator status-error";
-            
-            // Create file name span
-            let fileNameSpan = document.createElement("span");
-            fileNameSpan.textContent = `${file.name} - UPLOAD FAILED`;
-            fileNameSpan.style.color = "var(--error)";
-            
-            // Append elements
-            listItem.appendChild(statusIndicator);
-            listItem.appendChild(fileNameSpan);
-            
-            uploadedFilesList.appendChild(listItem);
+            // Upload complete
+            statusText.textContent = "Transfer complete!";
+            statusIndicator.className = "status-indicator status-success";
           }
-        }
+          
+          progressBar.style.width = `${progress}%`;
+          progressPercentage.textContent = `${Math.round(progress)}%`;
+        }, 300);
 
-        statusText.innerText = "✅ UPLOAD COMPLETE";
-        statusText.style.color = "var(--success)";
+        // Process each file (simulated in this frontend-only example)
+        for (let file of fileInput.files) {
+          // In a real app, you would upload the file here
+          // This is just simulating the process
+          await new Promise(resolve => setTimeout(resolve, 1000));
+          
+          // Generate a random 6-digit code
+          const fileCode = Math.floor(100000 + Math.random() * 900000);
+          
+          // Add to uploaded files list
+          let listItem = document.createElement("li");
+          listItem.textContent = `${file.name} (${formatFileSize(file.size)})`;
+          uploadedFilesList.appendChild(listItem);
+          
+          // Add to file codes list
+          let codeItem = document.createElement("div");
+          codeItem.textContent = fileCode;
+          codeItem.onclick = () => {
+            navigator.clipboard.writeText(fileCode);
+            codeItem.textContent = "Copied!";
+            setTimeout(() => {
+              codeItem.textContent = fileCode;
+            }, 2000);
+          };
+          fileCodesList.appendChild(codeItem);
+        }
       });
 
-      // Simulated progress animation
-      let progress = 0;
-      const interval = setInterval(() => {
-        progress += 10;
-        document.getElementById("progress").style.width = `${progress}%`;
-        if (progress >= 100) {
-          clearInterval(interval);
-        }
-      }, 500);
-
-      function copyToClipboard(code) {
-        navigator.clipboard.writeText(code);
-        
-        // Create notification
-        const notification = document.createElement("div");
-        notification.textContent = `✅ COPIED: ${code}`;
-        notification.style.position = "fixed";
-        notification.style.bottom = "20px";
-        notification.style.left = "50%";
-        notification.style.transform = "translateX(-50%)";
-        notification.style.backgroundColor = "var(--dark-bg)";
-        notification.style.color = "var(--success)";
-        notification.style.padding = "10px 20px";
-        notification.style.borderRadius = "4px";
-        notification.style.border = "1px solid var(--success)";
-        notification.style.zIndex = "1000";
-        notification.style.fontFamily = "'Roboto Mono', monospace";
-        notification.style.fontSize = "0.9rem";
-        notification.style.boxShadow = "0 4px 12px rgba(0, 0, 0, 0.3)";
-        
-        document.body.appendChild(notification);
-        
-        setTimeout(() => {
-          notification.style.opacity = "0";
-          notification.style.transition = "opacity 0.5s ease";
-          setTimeout(() => {
-            document.body.removeChild(notification);
-          }, 500);
-        }, 2000);
+      // Helper function to format file size
+      function formatFileSize(bytes) {
+        if (bytes === 0) return '0 Bytes';
+        const k = 1024;
+        const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+        return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
       }
 
+      // Download functionality
       document.getElementById("downloadBtn").addEventListener("click", function () {
         const fileCode = document.getElementById("fileCodeInput").value.trim();
-        if (!fileCode) {
-          alert("⚠️ PLEASE ENTER A FILE CODE");
+        if (!fileCode || !/^\d{6}$/.test(fileCode)) {
+          alert("Please enter a valid 6-digit code!");
           return;
         }
-        if (fileCode.length !== 6) {
-          alert("⚠️ CODE MUST BE 6 DIGITS");
-          return;
-        }
-        window.location.href = `/download/${fileCode}`;
+        
+        // In a real app, this would initiate the download
+        alert(`In a real application, this would download files for code: ${fileCode}`);
       });
-
-      // Auto focus on code input
-      document.getElementById("fileCodeInput").focus();
     </script>
   </body>
 </html>
