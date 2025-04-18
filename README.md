@@ -1,4 +1,4 @@
-# QuickShare - Temporary File Transfer Service
+# Seamless Share - Temporary File Transfer Service
 
 A lightweight file sharing application that allows users to upload files and share them via a 6-digit code. Files are automatically deleted after 3 minutes for security and storage optimization.
 
@@ -21,8 +21,8 @@ A lightweight file sharing application that allows users to upload files and sha
 
 1. Clone the repository:
    ```
-   git clone https://github.com/yourusername/quickshare.git
-   cd quickshare
+   git clone https://github.com/yourusername/Seamless-Share.git
+   cd Seamless Share
    ```
 
 2. Install dependencies:
@@ -32,7 +32,7 @@ A lightweight file sharing application that allows users to upload files and sha
 
 3. Create a `.env` file in the root directory and add your MongoDB connection string:
    ```
-   MONGO_URI=mongodb://localhost:27017/quickshare
+   MONGO_URI=mongodb://localhost:27017/Seamless Share
    PORT=5000
    ```
 
