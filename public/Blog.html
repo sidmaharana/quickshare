@@ -7,6 +7,82 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="styles.css" />
     <style>
+      .nav-container {
+        position: fixed; /* Fixes navbar to the top */
+        top: 0; /* Places it at the top */
+        left: 0;
+        width: 100%; /* Full width */
+        background-color: white; /* Add a background to avoid transparency issues */
+        z-index: 1000; /* Ensures it stays above other content */
+        box-shadow: 0px 4px 10px #45e63d4d;
+      }
+      .dropdown {
+        position: relative;
+      }
+
+      .nav3 {
+        background-color: #1b1b1e;
+        padding: 15px;
+        /* margin-bottom: 10px; */
+      }
+      .nav3 ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        justify-content: space-evenly;
+      }
+      .li {
+        text-decoration: none;
+        padding: 8px;
+        /* margin-left: -100px; */
+        margin-right: 400px;
+        color: #00ffcc;
+        font-style: oblique;
+        border-radius: 15px;
+        font-weight: bold; /* Makes the font bold */
+        font-size: 1.1rem; /* Slightly increases the font size */
+        display: block;
+        /* box-shadow: 0px 4px 10px rgba(0, 212, 255, 0.2); */
+      }
+
+      .nav3 a {
+        text-decoration: none;
+        padding: 8px;
+        color: #00ffcc;
+        font-weight: 600;
+        font-style: oblique;
+        display: block;
+        /* width: 20px; */
+        border-radius: 10px;
+        /* box-shadow: 0px 4px 10px rgba(6, 6, 6, 0.3); */
+        box-shadow: 0px 4px 10px rgba(0, 212, 255, 0.2);
+      }
+      .nav3 .dropdown-content {
+        display: none;
+      }
+      .nav3 .dropdown:hover .dropdown-content {
+        display: block;
+        position: absolute;
+        background-color: #1a1b23;
+        border-radius: 1cm;
+        min-width: 50px;
+        /* padding: 20px; */
+      }
+      .dropdown-content a {
+        background-color: #282727;
+        box-shadow: none;
+      }
+      .nav3 .dropdown-content a:hover {
+        display: block;
+        box-sizing: border-box;
+        border: #00ffcc solid 1px;
+        border-radius: 1px;
+        background-color: #393838;
+      }
+
       .sect {
         width: 90%;
         max-width: 800px;
@@ -22,7 +98,7 @@
         background-color: #222;
         padding: 30px;
         border-radius: 10px;
-        box-shadow: 0 0 8px rgb(52, 160, 210);
+        box-shadow: 0 0 8px #00ffcc;
         text-align: center;
         transition: transform 0.3s ease-in-out;
       }
@@ -34,20 +110,20 @@
 
       .block1 h1 {
         font-size: 40px;
-        color: #00d4ff;
+        color: #00ffcc;
         margin-bottom: 10px;
         text-shadow: 0 0 10px #36a2cc;
       }
 
       .block1 p {
         font-size: 1.2rem;
-        color: #4fdcdc;
+        color: #8abbeb;
         font-family: "Courier New", Courier, monospace;
         margin-bottom: 20px;
       }
 
       .btn {
-        background-color: #36a2cc;
+        background-color: #0fc9a4;
         color: white;
         padding: 10px 20px;
         text-decoration: none;
@@ -57,7 +133,12 @@
       }
 
       .btn:hover {
-        background-color: #1e7ea3;
+        background-color: #0e8d7c;
+      }
+      .head {
+        color: #aff6d7;
+        text-decoration: underline 1px;
+        text-underline-offset: 2px;
       }
 
       .features ul,
@@ -76,11 +157,11 @@
 
       .features b,
       .how-it-works b {
-        color: #00d4ff;
+        color: #00ffcc;
       }
 
       .contact a {
-        color: #36a2cc;
+        color: #00ffcc;
         font-weight: bold;
         text-decoration: none;
       }
@@ -90,19 +171,24 @@
       }
 
       footer p {
-        color: #00d4ff;
+        color: #00ffcc;
         margin-top: 30px;
         text-align: center;
       }
     </style>
   </head>
-  <body class="bg-zinc-950 text-white flex flex-col items-center justify-center min-h-screen p-6">
+  <body
+    class="bg-zinc-950 text-white flex flex-col items-center justify-center min-h-screen p-6"
+  >
     <div class="nav-container mb-10">
       <nav class="nav3 bg-zinc-900">
         <ul>
           <li
             class="li text-2xl not-italic"
-            style="font-family: Georgia, 'Times New Roman', Times, serif; font-weight: 1000;"
+            style="
+              font-family: Georgia, 'Times New Roman', Times, serif;
+              font-weight: 1000;
+            "
           >
             SeamlessShare
           </li>
@@ -131,15 +217,23 @@
 
       <!-- Features -->
       <section id="features" class="features">
-        <h2 class="text-2xl font-semibold text-cyan-400 mb-4">Why Use Our File Transfer App?</h2>
+        <h2 class="head text-2xl font-semibold mb-4">
+          Why Use Our File Transfer App?
+        </h2>
         <ul>
           <li>
             <b>🔒 Secure and Private Transfers</b>
-            <p>Your files are encrypted, ensuring only the intended recipient can access them.</p>
+            <p>
+              Your files are encrypted, ensuring only the intended recipient can
+              access them.
+            </p>
           </li>
           <li>
             <b>⚡ Fast Uploads and Downloads</b>
-            <p>High-speed servers enable seamless file transfers, even for large files.</p>
+            <p>
+              High-speed servers enable seamless file transfers, even for large
+              files.
+            </p>
           </li>
           <li>
             <b>📂 No Signup Required</b>
@@ -147,14 +241,17 @@
           </li>
           <li>
             <b>🔗 Simple 6-digit Code Sharing</b>
-            <p>Share a unique 6-digit code to access your file — clean and secure.</p>
+            <p>
+              Share a unique 6-digit code to access your file — clean and
+              secure.
+            </p>
           </li>
         </ul>
       </section>
 
       <!-- How it Works -->
       <section id="how-it-works" class="how-it-works">
-        <h2 class="text-2xl font-semibold text-cyan-400 mb-4">How It Works</h2>
+        <h2 class="text-2xl font-semibold head mb-4">How It Works</h2>
         <ol>
           <li>
             <b>📤 Upload your file and get a unique 6-digit code</b>
@@ -162,18 +259,22 @@
           </li>
           <li>
             <b>📩 Share the code with your recipient</b>
-            <p>Send it via text, email, or even whisper it — it’s that simple.</p>
+            <p>
+              Send it via text, email, or even whisper it — it’s that simple.
+            </p>
           </li>
           <li>
             <b>⬇️ Download the file using the code</b>
-            <p>The recipient enters the code and grabs the file — fast and safe.</p>
+            <p>
+              The recipient enters the code and grabs the file — fast and safe.
+            </p>
           </li>
         </ol>
       </section>
 
       <!-- Contact -->
       <section id="contact" class="contact">
-        <h2 class="text-2xl font-semibold text-cyan-400 mb-4">Get in Touch</h2>
+        <h2 class="text-2xl font-semibold head mb-4">Get in Touch</h2>
         <p>
           Questions or feedback? Drop us a line at
           <a href="mailto:uplords@filetransfer.com">uplords@filetransfer.com</a>
