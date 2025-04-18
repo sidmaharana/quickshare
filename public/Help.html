@@ -7,6 +7,82 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="styles.css" />
     <style>
+      .nav-container {
+        position: fixed; /* Fixes navbar to the top */
+        top: 0; /* Places it at the top */
+        left: 0;
+        width: 100%; /* Full width */
+        background-color: white; /* Add a background to avoid transparency issues */
+        z-index: 1000; /* Ensures it stays above other content */
+        box-shadow: 0px 4px 10px #45e63d4d;
+      }
+      .dropdown {
+        position: relative;
+      }
+
+      .nav3 {
+        background-color: #08080d;
+        padding: 15px;
+        /* margin-bottom: 10px; */
+      }
+      .nav3 ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        justify-content: space-evenly;
+      }
+      .li {
+        text-decoration: none;
+        padding: 8px;
+        /* margin-left: -100px; */
+        margin-right: 400px;
+        color: #00ffcc;
+        font-style: oblique;
+        border-radius: 15px;
+        font-weight: bold; /* Makes the font bold */
+        font-size: 1.1rem; /* Slightly increases the font size */
+        display: block;
+        /* box-shadow: 0px 4px 10px rgba(0, 212, 255, 0.2); */
+      }
+
+      .nav3 a {
+        text-decoration: none;
+        padding: 8px;
+        color: #00ffcc;
+        font-weight: 600;
+        font-style: oblique;
+        display: block;
+        /* width: 20px; */
+        border-radius: 10px;
+        /* box-shadow: 0px 4px 10px rgba(6, 6, 6, 0.3); */
+        box-shadow: 0px 4px 10px rgba(0, 212, 255, 0.2);
+      }
+      .nav3 .dropdown-content {
+        display: none;
+      }
+      .nav3 .dropdown:hover .dropdown-content {
+        display: block;
+        position: absolute;
+        background-color: #1a1b23;
+        border-radius: 1cm;
+        min-width: 50px;
+        /* padding: 20px; */
+      }
+      .dropdown-content a {
+        background-color: #282727;
+        box-shadow: none;
+      }
+      .nav3 .dropdown-content a:hover {
+        display: block;
+        box-sizing: border-box;
+        border: #00ffcc solid 1px;
+        border-radius: 1px;
+        background-color: #393838;
+      }
+
       .Container {
         text-align: center;
         display: flex;
@@ -22,7 +98,7 @@
         margin-bottom: 60px;
         padding: 25px;
         border-radius: 10px;
-        box-shadow: 0 0 8px rgb(52, 160, 210);
+        box-shadow: 0 0 8px #00ffcc;
         text-align: center;
         transition: transform 0.3s ease-in-out;
         width: 100%;
@@ -34,7 +110,7 @@
 
       .block1 h1 {
         font-size: 25px;
-        color: #00d4ff;
+        color: #00ffcc;
         margin-bottom: 10px;
         font-family: "Courier New", Courier, monospace;
         text-shadow: 0 0 10px #36a2cc;
@@ -47,37 +123,46 @@
         margin-bottom: 10px;
       }
 
-      .block1 p:hover {
-        color: #36a2cc;
-      }
-
       .Container h2 {
         font-size: 30px;
-        text-shadow: 0 0 8px rgb(52, 160, 210);
+        text-shadow: 0 0 8px #00ffcc;
         margin-bottom: 40px;
         margin-top: -90px;
-        text-decoration: underline 1px solid #00d4ff;
       }
 
       footer p {
-        color: #00d4ff;
+        color: #00ffcc;
         text-align: center;
         margin-top: 50px;
       }
-
+      .head {
+        color: #00ffcc;
+        text-decoration: underline 1px;
+        text-underline-offset: 4px;
+      }
     </style>
   </head>
-  <body class="bg-zinc-950 text-white flex flex-col items-center justify-center min-h-screen p-6">
+  <body
+    class="bg-zinc-950 text-white flex flex-col items-center justify-center min-h-screen p-6"
+  >
     <div class="nav-container mb-10">
       <nav class="nav3 bg-zinc-900">
         <ul>
-          <li class="li text-2xl not-italic" style="font-family: Georgia, 'Times New Roman', Times, serif; font-weight: 1000;">
+          <li
+            class="li text-2xl not-italic"
+            style="
+              font-family: Georgia, 'Times New Roman', Times, serif;
+              font-weight: 1000;
+            "
+          >
             SeamlessShare
           </li>
           <li><a href="index.html">Home</a></li>
           <li class="dropdown">
             <a href="#">Resources</a>
-            <div class="dropdown-content text-center w-48 shadow-lg rounded-full group-hover:block absolute left-1/2 transform -translate-x-1/2 z-50">
+            <div
+              class="dropdown-content text-center w-48 shadow-lg rounded-full group-hover:block absolute left-1/2 transform -translate-x-1/2 z-50"
+            >
               <a href="Blog.html">Blog</a>
               <a href="About_us.html">About Us</a>
             </div>
@@ -88,7 +173,7 @@
     </div>
 
     <div class="Container">
-      <h2>How to Use</h2>
+      <h2 class="head">How to Use</h2>
 
       <div class="block1">
         <h1>How to Send Files</h1>
@@ -105,7 +190,10 @@
 
       <div class="block1">
         <h1>Supported File Types & Size</h1>
-        <p>All file types are supported (documents, images, videos, compressed files, etc.).</p>
+        <p>
+          All file types are supported (documents, images, videos, compressed
+          files, etc.).
+        </p>
         <p>Maximum file size: Up to 500MB (subject to change).</p>
       </div>
 
@@ -128,7 +216,18 @@
 
       <div class="block1">
         <h1>Contact Support</h1>
-        <p>📧 Email: <a href="mailto:uplords@filetransfer.com" style="color: #36a2cc;">Uplords@filetransfer.com</a></p>
+        <p>
+          📧 Email:
+          <a
+            href="mailto:uplords@filetransfer.com"
+            style="
+              color: #a2f2e2;
+              text-decoration: underline 1px solid;
+              text-underline-offset: 2px;
+            "
+            >Uplords@filetransfer.com</a
+          >
+        </p>
       </div>
     </div>
 
@@ -137,3 +236,4 @@
     </footer>
   </body>
 </html>
+
