@@ -9,38 +9,83 @@
       body {
         background: #000;
         color: #00ffcc;
-        font-family: 'Courier New', Courier, monospace;
+        font-family: "Courier New", Courier, monospace;
       }
 
-      nav {
-        background-color: rgba(0, 0, 0, 0.6);
-        backdrop-filter: blur(6px);
-        border: 1px solid rgba(0, 255, 204, 0.2);
-        border-radius: 12px;
-        box-shadow: 0 0 10px #00ffcc;
-        padding: 1rem 2rem;
-        margin-bottom: 80px;
+      .nav-container {
+        position: fixed; /* Fixes navbar to the top */
+        top: 0; /* Places it at the top */
+        left: 0;
+        width: 100%; /* Full width */
+        background-color: white; /* Add a background to avoid transparency issues */
+        z-index: 1000; /* Ensures it stays above other content */
+        box-shadow: 0px 4px 10px #45e63d4d;
+      }
+      .dropdown {
+        position: relative;
       }
 
-      nav ul {
+      .nav3 {
+        background-color: #1b1b1e;
+        padding: 15px;
+        /* margin-bottom: 10px; */
+      }
+      .nav3 ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        gap: 2rem;
+        justify-content: space-evenly;
       }
-
-      nav a {
-        color: #00d4ff;
+      .li {
         text-decoration: none;
-        transition: color 0.3s ease;
+        padding: 8px;
+        /* margin-left: -100px; */
+        margin-right: 400px;
+        color: #00ffcc;
+        font-style: oblique;
+        border-radius: 15px;
+        font-weight: bold; /* Makes the font bold */
+        font-size: 1.1rem; /* Slightly increases the font size */
+        display: block;
+        /* box-shadow: 0px 4px 10px rgba(0, 212, 255, 0.2); */
       }
 
-      nav a:hover {
-        color: #0ff;
-        text-shadow: 0 0 5px #00ffcc;
+      .nav3 a {
+        text-decoration: none;
+        padding: 8px;
+        color: #00ffcc;
+        font-weight: 600;
+        font-style: oblique;
+        display: block;
+        /* width: 20px; */
+        border-radius: 10px;
+        /* box-shadow: 0px 4px 10px rgba(6, 6, 6, 0.3); */
+        box-shadow: 0px 4px 10px rgba(0, 212, 255, 0.2);
+      }
+      .nav3 .dropdown-content {
+        display: none;
+      }
+      .nav3 .dropdown:hover .dropdown-content {
+        display: block;
+        position: absolute;
+        background-color: #1a1b23;
+        border-radius: 1cm;
+        min-width: 50px;
+        /* padding: 20px; */
+      }
+      .dropdown-content a {
+        background-color: #282727;
+        box-shadow: none;
+      }
+      .nav3 .dropdown-content a:hover {
+        display: block;
+        box-sizing: border-box;
+        border: #00ffcc solid 1px;
+        border-radius: 1px;
+        background-color: #393838;
       }
 
       .dropdown-content {
@@ -132,27 +177,37 @@
     </style>
   </head>
   <body class="flex flex-col items-center justify-start min-h-screen px-4">
-    <nav class="w-full max-w-6xl mt-6">
-      <ul>
-        <li class="text-2xl font-bold uppercase text-cyan-400 tracking-wide">
-          SeamlessShare
-        </li>
-        <li><a href="index.html">Home</a></li>
-        <li class="dropdown relative">
-          <a href="#">Resources</a>
-          <div class="dropdown-content absolute mt-2">
-            <a href="Blog.html">Blog</a><br />
-            <a href="About_us.html">About Us</a>
-          </div>
-        </li>
-        <li><a href="Help.html">Help</a></li>
-      </ul>
-    </nav>
+    <div class="nav-container mb-10">
+      <nav class="nav3 bg-zinc-900">
+        <ul>
+          <li
+            class="li text-2xl not-italic"
+            style="
+              font-family: Georgia, 'Times New Roman', Times, serif;
+              font-weight: 1000;
+            "
+          >
+            SeamlessShare
+          </li>
+          <li><a href="index.html">Home</a></li>
+          <li class="dropdown">
+            <a href="#">Resources</a>
+            <div
+              class="dropdown-content text-center w-48 shadow-lg rounded-full group-hover:block absolute left-1/2 transform -translate-x-1/2 z-50"
+            >
+              <a href="Blog.html">Blog</a>
+              <a href="About_us.html">About Us</a>
+            </div>
+          </li>
+          <li><a href="Help.html">Help</a></li>
+        </ul>
+      </nav>
+    </div>
 
     <div class="sect">
       <section id="about-us" class="about-us text-center">
         <h2>About Us</h2>
-        <p style="color: #8abbeb; font-size: 15px">
+        <p style="color: #fff; font-size: 15px">
           We are a passionate team of developers from <b>PICT College</b>,
           pursuing Electronics and Computer Engineering. Our mission is to build
           seamless file-sharing tools that blend top-tier encryption with
@@ -186,8 +241,6 @@
       </section>
     </div>
 
-    <footer>
-      © 2025 SeamlessShare. All rights reserved.
-    </footer>
+    <footer>© 2025 SeamlessShare. All rights reserved.</footer>
   </body>
 </html>
