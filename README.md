@@ -55,10 +55,7 @@ A lightweight file sharing application that allows users to upload files and sha
 3. Recipient enters the code to download the file
 4. Files are automatically deleted after 3 minutes
 
-## License
-
-MIT
 
 ## Author
 
-Your Name
+Sidharth
